@@ -1,4 +1,7 @@
 <?php
+
+namespace PersonDBSkeleton\Model\Entities;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -15,6 +18,176 @@ class Addresses {
      */
     public function __construct() {
         $this->people = new ArrayCollection();
+    }
+    /**
+     * Add person.
+     *
+     * @param PeopleAddresses $person
+     *
+     * @return Addresses
+     */
+    public function addPerson(PeopleAddresses $person): Addresses {
+        $this->people[] = $person;
+        return $this;
+    }
+    /**
+     * Get countryName.
+     *
+     * @return string
+     */
+    public function getCountryName(): string {
+        return $this->countryName;
+    }
+    /**
+     * Get extendedAddress.
+     *
+     * @return string|null
+     */
+    public function getExtendedAddress(): ?string {
+        return $this->extendedAddress;
+    }
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId(): int {
+        return $this->id;
+    }
+    /**
+     * Get locality.
+     *
+     * @return string
+     */
+    public function getLocality(): string {
+        return $this->locality;
+    }
+    /**
+     * Get people.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPeople(): Collection {
+        return $this->people;
+    }
+    /**
+     * Get postOfficeBox.
+     *
+     * @return string|null
+     */
+    public function getPostOfficeBox(): ?string {
+        return $this->postOfficeBox;
+    }
+    /**
+     * Get postalCode.
+     *
+     * @return string
+     */
+    public function getPostalCode(): string {
+        return $this->postalCode;
+    }
+    /**
+     * Get region.
+     *
+     * @return string
+     */
+    public function getRegion(): string {
+        return $this->region;
+    }
+    /**
+     * Get streetAddress.
+     *
+     * @return string|null
+     */
+    public function getStreetAddress(): ?string {
+        return $this->streetAddress;
+    }
+    /**
+     * Remove person.
+     *
+     * @param PeopleAddresses $person
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removePerson(PeopleAddresses $person): bool {
+        return $this->people->removeElement($person);
+    }
+    /**
+     * Set countryName.
+     *
+     * @param string $countryName
+     *
+     * @return Addresses
+     */
+    public function setCountryName($countryName): Addresses {
+        $this->countryName = $countryName;
+        return $this;
+    }
+    /**
+     * Set extendedAddress.
+     *
+     * @param string|null $extendedAddress
+     *
+     * @return Addresses
+     */
+    public function setExtendedAddress($extendedAddress = null): Addresses {
+        $this->extendedAddress = $extendedAddress;
+        return $this;
+    }
+    /**
+     * Set locality.
+     *
+     * @param string $locality
+     *
+     * @return Addresses
+     */
+    public function setLocality($locality): Addresses {
+        $this->locality = $locality;
+        return $this;
+    }
+    /**
+     * Set postOfficeBox.
+     *
+     * @param string|null $postOfficeBox
+     *
+     * @return Addresses
+     */
+    public function setPostOfficeBox($postOfficeBox = null): Addresses {
+        $this->postOfficeBox = $postOfficeBox;
+        return $this;
+    }
+    /**
+     * Set postalCode.
+     *
+     * @param string $postalCode
+     *
+     * @return Addresses
+     */
+    public function setPostalCode($postalCode): Addresses {
+        $this->postalCode = $postalCode;
+        return $this;
+    }
+    /**
+     * Set region.
+     *
+     * @param string $region
+     *
+     * @return Addresses
+     */
+    public function setRegion($region): Addresses {
+        $this->region = $region;
+        return $this;
+    }
+    /**
+     * Set streetAddress.
+     *
+     * @param string|null $streetAddress
+     *
+     * @return Addresses
+     */
+    public function setStreetAddress($streetAddress = null): Addresses {
+        $this->streetAddress = $streetAddress;
+        return $this;
     }
     /**
      * @var string

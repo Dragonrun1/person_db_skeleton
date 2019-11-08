@@ -1,4 +1,7 @@
 <?php
+
+namespace PersonDBSkeleton\Model\Entities;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,6 +14,82 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class PeopleEmails {
+    /**
+     * Get comment.
+     *
+     * @return string|null
+     */
+    public function getComment(): ?string {
+        return $this->comment;
+    }
+    /**
+     * Get email.
+     *
+     * @return Emails
+     */
+    public function getEmail(): Emails {
+        return $this->email;
+    }
+    /**
+     * Get person.
+     *
+     * @return People
+     */
+    public function getPerson(): People {
+        return $this->person;
+    }
+    /**
+     * Get type.
+     *
+     * @return EmailTypes
+     */
+    public function getType(): EmailTypes {
+        return $this->type;
+    }
+    /**
+     * Set comment.
+     *
+     * @param string|null $comment
+     *
+     * @return PeopleEmails
+     */
+    public function setComment($comment = null): PeopleEmails {
+        $this->comment = $comment;
+        return $this;
+    }
+    /**
+     * Set email.
+     *
+     * @param Emails $email
+     *
+     * @return PeopleEmails
+     */
+    public function setEmail(Emails $email): PeopleEmails {
+        $this->email = $email;
+        return $this;
+    }
+    /**
+     * Set person.
+     *
+     * @param People $person
+     *
+     * @return PeopleEmails
+     */
+    public function setPerson(People $person): PeopleEmails {
+        $this->person = $person;
+        return $this;
+    }
+    /**
+     * Set type.
+     *
+     * @param EmailTypes $type
+     *
+     * @return PeopleEmails
+     */
+    public function setType(EmailTypes $type): PeopleEmails {
+        $this->type = $type;
+        return $this;
+    }
     /**
      * @var string|null
      *

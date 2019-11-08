@@ -1,4 +1,7 @@
 <?php
+
+namespace PersonDBSkeleton\Model\Entities;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -8,6 +11,52 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class Genders {
+    /**
+     * Get genderIdentity.
+     *
+     * @return string|null
+     */
+    public function getGenderIdentity(): ?string {
+        return $this->genderIdentity;
+    }
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId(): int {
+        return $this->id;
+    }
+    /**
+     * Get sex.
+     *
+     * @return string
+     */
+    public function getSex(): string {
+        return $this->sex;
+    }
+    /**
+     * Set genderIdentity.
+     *
+     * @param string|null $genderIdentity
+     *
+     * @return Genders
+     */
+    public function setGenderIdentity($genderIdentity = null): Genders {
+        $this->genderIdentity = $genderIdentity;
+        return $this;
+    }
+    /**
+     * Set sex.
+     *
+     * @param string $sex
+     *
+     * @return Genders
+     */
+    public function setSex($sex): Genders {
+        $this->sex = $sex;
+        return $this;
+    }
     /**
      * @var string|null
      *
@@ -25,8 +74,12 @@ class Genders {
     /**
      * @var string
      *
-     * @ORM\Column(name="sex", type="string", length=10, nullable=false, options={"comment"="biological sex - One of
-     *                         Female, Male, Other, None/Not applicable, Unknown"})
+     * @ORM\Column(name="sex",
+     *     type="string",
+     *     length=10,
+     *     nullable=false,
+     *     options={"comment"="biological sex - One of Female, Male, Other, None/Not applicable, Unknown"}
+     * )
      */
     private $sex;
 }

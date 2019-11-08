@@ -1,4 +1,8 @@
 <?php
+
+namespace PersonDBSkeleton\Model\Entities;
+
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,6 +24,253 @@ class People {
         $this->emails = new ArrayCollection();
         $this->addresses = new ArrayCollection();
         $this->phoneNumbers = new ArrayCollection();
+    }
+    /**
+     * Add address.
+     *
+     * @param PeopleAddresses $address
+     *
+     * @return People
+     */
+    public function addAddress(PeopleAddresses $address): People {
+        $this->addresses[] = $address;
+        return $this;
+    }
+    /**
+     * Add email.
+     *
+     * @param PeopleEmails $email
+     *
+     * @return People
+     */
+    public function addEmail(PeopleEmails $email): People {
+        $this->emails[] = $email;
+        return $this;
+    }
+    /**
+     * Add phoneNumber.
+     *
+     * @param PeoplePhoneNumbers $phoneNumber
+     *
+     * @return People
+     */
+    public function addPhoneNumber(PeoplePhoneNumbers $phoneNumber): People {
+        $this->phoneNumbers[] = $phoneNumber;
+        return $this;
+    }
+    /**
+     * Get additionalName.
+     *
+     * @return string|null
+     */
+    public function getAdditionalName(): ?string {
+        return $this->additionalName;
+    }
+    /**
+     * Get addresses.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAddresses(): Collection {
+        return $this->addresses;
+    }
+    /**
+     * Get birthday.
+     *
+     * @return \DateTime|null
+     */
+    public function getBirthday(): ?DateTime {
+        return $this->birthday;
+    }
+    /**
+     * Get emails.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEmails(): Collection {
+        return $this->emails;
+    }
+    /**
+     * Get familyName.
+     *
+     * @return string
+     */
+    public function getFamilyName(): string {
+        return $this->familyName;
+    }
+    /**
+     * Get gender.
+     *
+     * @return Genders|null
+     */
+    public function getGender(): ?Genders {
+        return $this->gender;
+    }
+    /**
+     * Get givenName.
+     *
+     * @return string
+     */
+    public function getGivenName(): string {
+        return $this->givenName;
+    }
+    /**
+     * Get honorificPrefix.
+     *
+     * @return string|null
+     */
+    public function getHonorificPrefix(): ?string {
+        return $this->honorificPrefix;
+    }
+    /**
+     * Get honorificSuffix.
+     *
+     * @return string|null
+     */
+    public function getHonorificSuffix(): ?string {
+        return $this->honorificSuffix;
+    }
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId(): int {
+        return $this->id;
+    }
+    /**
+     * Get phoneNumbers.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPhoneNumbers(): Collection {
+        return $this->phoneNumbers;
+    }
+    /**
+     * Get photo.
+     *
+     * @return PeoplePhotos|null
+     */
+    public function getPhoto(): ?PeoplePhotos {
+        return $this->photo;
+    }
+    /**
+     * Remove address.
+     *
+     * @param PeopleAddresses $address
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeAddress(PeopleAddresses $address): bool {
+        return $this->addresses->removeElement($address);
+    }
+    /**
+     * Remove email.
+     *
+     * @param PeopleEmails $email
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeEmail(PeopleEmails $email): bool {
+        return $this->emails->removeElement($email);
+    }
+    /**
+     * Remove phoneNumber.
+     *
+     * @param PeoplePhoneNumbers $phoneNumber
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removePhoneNumber(PeoplePhoneNumbers $phoneNumber): bool {
+        return $this->phoneNumbers->removeElement($phoneNumber);
+    }
+    /**
+     * Set additionalName.
+     *
+     * @param string|null $additionalName
+     *
+     * @return People
+     */
+    public function setAdditionalName($additionalName = null): People {
+        $this->additionalName = $additionalName;
+        return $this;
+    }
+    /**
+     * Set birthday.
+     *
+     * @param \DateTime|null $birthday
+     *
+     * @return People
+     */
+    public function setBirthday($birthday = null): People {
+        $this->birthday = $birthday;
+        return $this;
+    }
+    /**
+     * Set familyName.
+     *
+     * @param string $familyName
+     *
+     * @return People
+     */
+    public function setFamilyName($familyName): People {
+        $this->familyName = $familyName;
+        return $this;
+    }
+    /**
+     * Set gender.
+     *
+     * @param Genders|null $gender
+     *
+     * @return People
+     */
+    public function setGender(Genders $gender = null): People {
+        $this->gender = $gender;
+        return $this;
+    }
+    /**
+     * Set givenName.
+     *
+     * @param string $givenName
+     *
+     * @return People
+     */
+    public function setGivenName($givenName): People {
+        $this->givenName = $givenName;
+        return $this;
+    }
+    /**
+     * Set honorificPrefix.
+     *
+     * @param string|null $honorificPrefix
+     *
+     * @return People
+     */
+    public function setHonorificPrefix($honorificPrefix = null): People {
+        $this->honorificPrefix = $honorificPrefix;
+        return $this;
+    }
+    /**
+     * Set honorificSuffix.
+     *
+     * @param string|null $honorificSuffix
+     *
+     * @return People
+     */
+    public function setHonorificSuffix($honorificSuffix = null): People {
+        $this->honorificSuffix = $honorificSuffix;
+        return $this;
+    }
+    /**
+     * Set photo.
+     *
+     * @param PeoplePhotos|null $photo
+     *
+     * @return People
+     */
+    public function setPhoto(PeoplePhotos $photo = null): People {
+        $this->photo = $photo;
+        return $this;
     }
     /**
      * @var string|null

@@ -1,4 +1,7 @@
 <?php
+
+namespace PersonDBSkeleton\Model\Entities;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,6 +14,82 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class PeopleAddresses {
+    /**
+     * Get address.
+     *
+     * @return Addresses
+     */
+    public function getAddress(): Addresses {
+        return $this->address;
+    }
+    /**
+     * Get comment.
+     *
+     * @return string|null
+     */
+    public function getComment(): ?string {
+        return $this->comment;
+    }
+    /**
+     * Get person.
+     *
+     * @return People
+     */
+    public function getPerson(): People {
+        return $this->person;
+    }
+    /**
+     * Get type.
+     *
+     * @return AddressTypes
+     */
+    public function getType(): AddressTypes {
+        return $this->type;
+    }
+    /**
+     * Set address.
+     *
+     * @param Addresses $address
+     *
+     * @return PeopleAddresses
+     */
+    public function setAddress(Addresses $address): PeopleAddresses {
+        $this->address = $address;
+        return $this;
+    }
+    /**
+     * Set comment.
+     *
+     * @param string|null $comment
+     *
+     * @return PeopleAddresses
+     */
+    public function setComment($comment = null): PeopleAddresses {
+        $this->comment = $comment;
+        return $this;
+    }
+    /**
+     * Set person.
+     *
+     * @param People $person
+     *
+     * @return PeopleAddresses
+     */
+    public function setPerson(People $person): PeopleAddresses {
+        $this->person = $person;
+        return $this;
+    }
+    /**
+     * Set type.
+     *
+     * @param AddressTypes $type
+     *
+     * @return PeopleAddresses
+     */
+    public function setType(AddressTypes $type): PeopleAddresses {
+        $this->type = $type;
+        return $this;
+    }
     /**
      * @var Addresses
      *
