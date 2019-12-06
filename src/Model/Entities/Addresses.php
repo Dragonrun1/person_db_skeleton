@@ -255,12 +255,12 @@ class Addresses {
      */
     private $postalCode;
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(name="region",
      *     type="string",
      *     length=50,
-     *     nullable=false,
+     *     nullable=true,
      *     options={"comment"="state/county/province"}
      * )
      */
