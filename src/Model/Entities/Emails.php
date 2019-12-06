@@ -32,6 +32,16 @@ class Emails {
         return $this;
     }
     /**
+     * Delete (remove) person.
+     *
+     * @param PeopleEmails $person
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function deletePerson(PeopleEmails $person): bool {
+        return $this->person->removeElement($person);
+    }
+    /**
      * Get email.
      *
      * @return string
@@ -54,16 +64,6 @@ class Emails {
      */
     public function getPerson(): Collection {
         return $this->person;
-    }
-    /**
-     * Remove person.
-     *
-     * @param PeopleEmails $person
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removePerson(PeopleEmails $person): bool {
-        return $this->person->removeElement($person);
     }
     /**
      * Set email.

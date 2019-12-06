@@ -61,6 +61,36 @@ class People {
         return $this;
     }
     /**
+     * Delete (remove) address.
+     *
+     * @param PeopleAddresses $address
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function deleteAddress(PeopleAddresses $address): bool {
+        return $this->addresses->removeElement($address);
+    }
+    /**
+     * Delete (remove) email.
+     *
+     * @param PeopleEmails $email
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function deleteEmail(PeopleEmails $email): bool {
+        return $this->emails->removeElement($email);
+    }
+    /**
+     * Delete (remove) phoneNumber.
+     *
+     * @param PeoplePhoneNumbers $phoneNumber
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function deletePhoneNumber(PeoplePhoneNumbers $phoneNumber): bool {
+        return $this->phoneNumbers->removeElement($phoneNumber);
+    }
+    /**
      * Get additionalName.
      *
      * @return string|null
@@ -155,36 +185,6 @@ class People {
      */
     public function getPhoto(): ?PeoplePhotos {
         return $this->photo;
-    }
-    /**
-     * Remove address.
-     *
-     * @param PeopleAddresses $address
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeAddress(PeopleAddresses $address): bool {
-        return $this->addresses->removeElement($address);
-    }
-    /**
-     * Remove email.
-     *
-     * @param PeopleEmails $email
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeEmail(PeopleEmails $email): bool {
-        return $this->emails->removeElement($email);
-    }
-    /**
-     * Remove phoneNumber.
-     *
-     * @param PeoplePhoneNumbers $phoneNumber
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removePhoneNumber(PeoplePhoneNumbers $phoneNumber): bool {
-        return $this->phoneNumbers->removeElement($phoneNumber);
     }
     /**
      * Set additionalName.

@@ -32,6 +32,16 @@ class PhoneNumbers {
         return $this;
     }
     /**
+     * Delete (remove) person.
+     *
+     * @param PeoplePhoneNumbers $person
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function deletePerson(PeoplePhoneNumbers $person): bool {
+        return $this->people->removeElement($person);
+    }
+    /**
      * Get id.
      *
      * @return int
@@ -54,16 +64,6 @@ class PhoneNumbers {
      */
     public function getPhone(): string {
         return $this->phone;
-    }
-    /**
-     * Remove person.
-     *
-     * @param PeoplePhoneNumbers $person
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removePerson(PeoplePhoneNumbers $person): bool {
-        return $this->people->removeElement($person);
     }
     /**
      * Set phone.

@@ -32,6 +32,16 @@ class Addresses {
         return $this;
     }
     /**
+     * Delete (remove) person.
+     *
+     * @param PeopleAddresses $person
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function deletePerson(PeopleAddresses $person): bool {
+        return $this->people->removeElement($person);
+    }
+    /**
      * Get countryName.
      *
      * @return string
@@ -102,16 +112,6 @@ class Addresses {
      */
     public function getStreetAddress(): ?string {
         return $this->streetAddress;
-    }
-    /**
-     * Remove person.
-     *
-     * @param PeopleAddresses $person
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removePerson(PeopleAddresses $person): bool {
-        return $this->people->removeElement($person);
     }
     /**
      * Set countryName.
