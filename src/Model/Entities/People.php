@@ -13,7 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="people", indexes={
  *     @ORM\Index(name="fk_p_photo", columns={"photo_id"}),
- *     @ORM\Index(name="fk_p_gender", columns={"gender_id"})
+ *     @ORM\Index(name="fk_p_gender", columns={"gender_id"}),
+ *     @ORM\Index(name="idx_p_family_name", columns={"family_name"})
  * })
  * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\People")
  */
