@@ -308,7 +308,7 @@ class People {
      *
      * @ORM\Column(name="family_name",
      *     type="string",
-     *     length=50,
+     *     length=100,
      *     nullable=false,
      *     options={"comment"="family (often last) name"}
      * )
@@ -328,7 +328,7 @@ class People {
      *
      * @ORM\Column(name="given_name",
      *     type="string",
-     *     length=50,
+     *     length=100,
      *     nullable=false,
      *     options={"comment"="given (often first) name"}
      * )
