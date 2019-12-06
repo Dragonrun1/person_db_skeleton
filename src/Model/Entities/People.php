@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     @ORM\Index(name="fk_p_photo", columns={"photo_id"}),
  *     @ORM\Index(name="fk_p_gender", columns={"gender_id"})
  * })
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\People")
  */
 class People {
     /**
@@ -70,7 +70,7 @@ class People {
     /**
      * Get addresses.
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getAddresses(): Collection {
         return $this->addresses;
@@ -86,7 +86,7 @@ class People {
     /**
      * Get emails.
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getEmails(): Collection {
         return $this->emails;
@@ -142,7 +142,7 @@ class People {
     /**
      * Get phoneNumbers.
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getPhoneNumbers(): Collection {
         return $this->phoneNumbers;

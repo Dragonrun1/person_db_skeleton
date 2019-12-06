@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * PhoneNumbers
  *
  * @ORM\Table(name="phone_numbers")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\PhoneNumbers")
  */
 class PhoneNumbers {
     /**
@@ -42,7 +42,7 @@ class PhoneNumbers {
     /**
      * Get people.
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getPeople(): Collection {
         return $this->people;

@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Genders
  *
  * @ORM\Table(name="genders", uniqueConstraints={@ORM\UniqueConstraint(name="unq_g_gender", columns={"sex", "gender_identity"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\Genders")
  */
 class Genders {
     /**
