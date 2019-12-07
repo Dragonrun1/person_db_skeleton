@@ -12,7 +12,7 @@ use PersonDBSkeleton\Utils\Uuid4;
  * PhoneNumbers
  *
  * @ORM\Table(name="phone_numbers")
- * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\PhoneNumbers")
+ * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\PhoneNumbersRepository")
  */
 class PhoneNumbers {
     use EntityCommon;

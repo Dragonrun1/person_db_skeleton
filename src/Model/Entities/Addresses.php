@@ -12,7 +12,7 @@ use PersonDBSkeleton\Utils\Uuid4;
  * Addresses
  *
  * @ORM\Table(name="addresses")
- * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\Addresses")
+ * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\AddressesRepository")
  */
 class Addresses {
     use EntityCommon;

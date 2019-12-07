@@ -9,8 +9,13 @@ use PersonDBSkeleton\Utils\Uuid4;
 /**
  * Genders
  *
- * @ORM\Table(name="genders", uniqueConstraints={@ORM\UniqueConstraint(name="unq_g_gender", columns={"sex", "gender_identity"})})
- * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\Genders")
+ * @ORM\Table(
+ *     name="genders",
+ *     uniqueConstraints={
+ *         @ORM\UniqueConstraint(name="unq_g_gender", columns={"sex", "gender_identity"})
+ *     }
+ * )
+ * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\GendersRepository")
  */
 class Genders {
     use EntityCommon;

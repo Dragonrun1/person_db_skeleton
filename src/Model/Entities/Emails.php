@@ -12,7 +12,7 @@ use PersonDBSkeleton\Utils\Uuid4;
  * Emails
  *
  * @ORM\Table(name="emails")
- * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\Emails")
+ * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\EmailsRepository")
  */
 class Emails {
     use EntityCommon;
