@@ -6,6 +6,7 @@ namespace PersonDBSkeleton\Model\Entities;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use PersonDBSkeleton\Utils\Uuid4;
 
 /**
  * Emails
@@ -14,10 +15,16 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\Emails")
  */
 class Emails {
+    use EntityCommon;
+    use Uuid4;
     /**
      * Constructor
+     *
+     * @throws \Exception
      */
     public function __construct() {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->id = $this->asBase64();
         $this->person = new ArrayCollection();
     }
     /**
@@ -50,14 +57,6 @@ class Emails {
         return $this->email;
     }
     /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId(): int {
-        return $this->id;
-    }
-    /**
      * Get person.
      *
      * @return Collection
@@ -82,14 +81,6 @@ class Emails {
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     private $email = '';
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="bigint", nullable=false, options={"unsigned"=true})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
     /**
      * @var Collection
      *

@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace PersonDBSkeleton\Model\Entities;
 
-use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use PersonDBSkeleton\Utils\Uuid4;
 
 /**
  * People
@@ -19,10 +19,21 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\People")
  */
 class People {
+    use EntityCommon;
+    use Uuid4;
     /**
      * Constructor
+     *
+     * @param string $givenName
+     * @param string $familyName
+     *
+     * @throws \Exception
      */
-    public function __construct() {
+    public function __construct(string $givenName, string $familyName) {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->familyName = $familyName;
+        $this->givenName = $givenName;
+        $this->id = $this->asBase64();
         $this->emails = new ArrayCollection();
         $this->addresses = new ArrayCollection();
         $this->phoneNumbers = new ArrayCollection();
@@ -161,14 +172,6 @@ class People {
      */
     public function getHonorificSuffix(): ?string {
         return $this->honorificSuffix;
-    }
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId(): int {
-        return $this->id;
     }
     /**
      * Get phoneNumbers.
@@ -356,14 +359,6 @@ class People {
      * )
      */
     private $honorificSuffix;
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="bigint", nullable=false, options={"unsigned"=true})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
     /**
      * @var Collection
      *

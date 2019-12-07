@@ -6,6 +6,7 @@ namespace PersonDBSkeleton\Model\Entities;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use PersonDBSkeleton\Utils\Uuid4;
 
 /**
  * Addresses
@@ -14,10 +15,16 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\Addresses")
  */
 class Addresses {
+    use EntityCommon;
+    use Uuid4;
     /**
      * Addresses constructor.
+     *
+     * @throws \Exception
      */
     public function __construct() {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->id = $this->asBase64();
         $this->people = new ArrayCollection();
     }
     /**
@@ -56,14 +63,6 @@ class Addresses {
      */
     public function getExtendedAddress(): ?string {
         return $this->extendedAddress;
-    }
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId(): int {
-        return $this->id;
     }
     /**
      * Get locality.
@@ -207,14 +206,6 @@ class Addresses {
      * )
      */
     private $extendedAddress;
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="bigint", nullable=false, options={"unsigned"=true})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
     /**
      * @var string
      *

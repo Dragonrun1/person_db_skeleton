@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace PersonDBSkeleton\Model\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use PersonDBSkeleton\Utils\Uuid4;
 
 /**
  * Genders
@@ -12,6 +13,17 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\Genders")
  */
 class Genders {
+    use EntityCommon;
+    use Uuid4;
+    /**
+     * Genders constructor.
+     *
+     * @throws \Exception
+     */
+    public function __construct() {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->id = $this->asBase64();
+    }
     /**
      * Get genderIdentity.
      *
@@ -19,14 +31,6 @@ class Genders {
      */
     public function getGenderIdentity(): ?string {
         return $this->genderIdentity;
-    }
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId(): int {
-        return $this->id;
     }
     /**
      * Get sex.
@@ -64,14 +68,6 @@ class Genders {
      * @ORM\Column(name="gender_identity", type="string", length=255, nullable=true)
      */
     private $genderIdentity;
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="bigint", nullable=false, options={"unsigned"=true})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
     /**
      * @var string
      *

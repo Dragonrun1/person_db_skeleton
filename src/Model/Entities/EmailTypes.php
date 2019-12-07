@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace PersonDBSkeleton\Model\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use PersonDBSkeleton\Utils\Uuid4;
 
 /**
  * EmailTypes
@@ -12,13 +13,16 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class EmailTypes {
+    use EntityCommon;
+    use Uuid4;
     /**
-     * Get id.
+     * EmailTypes constructor.
      *
-     * @return int
+     * @throws \Exception
      */
-    public function getId(): int {
-        return $this->id;
+    public function __construct() {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->id = $this->asBase64();
     }
     /**
      * Get type.
@@ -39,14 +43,6 @@ class EmailTypes {
         $this->type = $type;
         return $this;
     }
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="bigint", nullable=false, options={"unsigned"=true})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
     /**
      * @var string
      *
