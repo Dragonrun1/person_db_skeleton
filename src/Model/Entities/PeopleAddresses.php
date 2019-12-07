@@ -16,6 +16,21 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PeopleAddresses {
     /**
+     * PeopleAddresses constructor.
+     *
+     * @param People       $person
+     * @param Addresses    $address
+     * @param AddressTypes $type
+     *
+     * @throws \Exception
+     */
+    public function __construct(People $person, Addresses $address, AddressTypes $type) {
+//        $this->createdAt = new \DateTimeImmutable();
+        $this->address = $address;
+        $this->person = $person;
+        $this->type = $type;
+    }
+    /**
      * Get address.
      *
      * @return Addresses
@@ -30,6 +45,22 @@ class PeopleAddresses {
      */
     public function getComment(): ?string {
         return $this->comment;
+    }
+    /**
+     * Date and time when entity was created.
+     *
+     * Note:
+     * Doctrine often will return date-times as plain string instead of correct
+     * object so this method will correct it when called.
+     *
+     * @return \DateTimeImmutable
+     * @throws \Exception
+     */
+    public function getCreatedAt(): \DateTimeImmutable {
+        if (!$this->createdAt instanceof \DateTimeImmutable) {
+            $this->createdAt = new \DateTimeImmutable($this->createdAt);
+        }
+        return $this->createdAt;
     }
     /**
      * Get person.
@@ -106,6 +137,12 @@ class PeopleAddresses {
      * @ORM\Column(name="comment", type="text", length=65535, nullable=true)
      */
     private $comment;
+    /**
+     * @var \DateTimeImmutable
+     *
+     * @ORM\Column(name="created_at", type="datetime_immutable", nullable=false)
+     */
+    private $createdAt;
     /**
      * @var People
      *
