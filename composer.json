@@ -1,16 +1,12 @@
 {
-    "name": "dragonrun1/person_db_skeleton",
-    "license": "BSD-2.0",
-    "type": "project",
-    "authors": [
-        {
-            "name": "Michael Cummings", "email": "dragonrun1@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "PersonDBSkeleton\\": [
-                "bin/", "src/"
+    "name": "dragonrun1/person_db_skeleton", "license": "BSD-3-Clause", "type": "project", "authors": [
+    {
+        "name": "Michael Cummings", "email": "dragonrun1@gmail.com"
+    }
+], "autoload": {
+    "psr-4": {
+        "PersonDBSkeleton\\": [
+            "bin/", "src/"
             ]
         }
     },
