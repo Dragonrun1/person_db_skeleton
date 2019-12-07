@@ -120,9 +120,9 @@ class People {
     /**
      * Get birthday.
      *
-     * @return \DateTime|null
+     * @return \DateTimeImmutable|null
      */
-    public function getBirthday(): ?DateTime {
+    public function getBirthday(): ?\DateTimeImmutable {
         return $this->birthday;
     }
     /**
@@ -203,11 +203,11 @@ class People {
     /**
      * Set birthday.
      *
-     * @param \DateTime|null $birthday
+     * @param \DateTimeImmutable|null $birthday
      *
      * @return People
      */
-    public function setBirthday($birthday = null): People {
+    public function setBirthday(\DateTimeImmutable $birthday = null): People {
         $this->birthday = $birthday;
         return $this;
     }
@@ -295,9 +295,9 @@ class People {
      */
     private $addresses;
     /**
-     * @var DateTime|null
+     * @var \DateTimeImmutable|null
      *
-     * @ORM\Column(name="birthday", type="date", nullable=true)
+     * @ORM\Column(name="birthday", type="datetime_immutable", nullable=true)
      */
     private $birthday;
     /**
