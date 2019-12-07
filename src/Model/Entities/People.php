@@ -16,7 +16,7 @@ use PersonDBSkeleton\Utils\Uuid4;
  *     @ORM\Index(name="fk_p_gender", columns={"gender_id"}),
  *     @ORM\Index(name="idx_p_family_name", columns={"family_name"})
  * })
- * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\People")
+ * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\PeopleRepository")
  */
 class People {
     use EntityCommon;
