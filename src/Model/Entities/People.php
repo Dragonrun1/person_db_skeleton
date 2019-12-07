@@ -368,7 +368,7 @@ class People {
     /**
      * @var PeoplePhotos
      *
-     * @ORM\OneToOne(targetEntity="PeoplePhotos")
+     * @ORM\OneToOne(targetEntity="PeoplePhotos", fetch="EXTRA_LAZY", orphanRemoval=true)
      * @ORM\JoinColumn(nullable=true)
      */
     private $photo;
