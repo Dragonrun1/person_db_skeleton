@@ -2,3 +2,4 @@
 /vendor/
 test*.*
 junk*.*
+composer.lock
