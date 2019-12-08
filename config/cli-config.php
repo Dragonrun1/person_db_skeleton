@@ -46,7 +46,7 @@ declare(strict_types=1);
  * @copyright 2019 Michael Cummings
  * @license   BSD-3-Clause
  */
-require_once dirname(__DIR__, 1) . '/vendor/autoload.php';
+require_once dirname(__DIR__, 1) . '/bin/bootstrap.php';
 use Doctrine\Common\Annotations\AnnotationException;
 use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
