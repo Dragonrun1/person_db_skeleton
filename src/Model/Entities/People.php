@@ -46,6 +46,7 @@ declare(strict_types=1);
  * @copyright 2019 Michael Cummings
  * @license   BSD-3-Clause
  */
+
 namespace PersonDBSkeleton\Model\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;

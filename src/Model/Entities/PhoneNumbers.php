@@ -46,6 +46,7 @@ declare(strict_types=1);
  * @copyright 2019 Michael Cummings
  * @license   BSD-3-Clause
  */
+
 namespace PersonDBSkeleton\Model\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -65,11 +66,14 @@ class PhoneNumbers {
     /**
      * PhoneNumbers constructor.
      *
+     * @param string $phone
+     *
      * @throws \Exception
      */
-    public function __construct() {
+    public function __construct(string $phone) {
         $this->createdAt = new \DateTimeImmutable();
         $this->id = $this->asBase64();
+        $this->phone = $phone;
         $this->people = new ArrayCollection();
     }
     /**
@@ -131,5 +135,5 @@ class PhoneNumbers {
      *
      * @ORM\Column(name="phone", type="string", length=30, nullable=false)
      */
-    private $phone = '';
+    private $phone;
 }

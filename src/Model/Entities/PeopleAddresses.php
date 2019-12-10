@@ -46,12 +46,13 @@ declare(strict_types=1);
  * @copyright 2019 Michael Cummings
  * @license   BSD-3-Clause
  */
+
 namespace PersonDBSkeleton\Model\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PeopleAddresses
+ * Many to many join table for people and addresses.
  *
  * @ORM\Table(name="people_addresses", indexes={@ORM\Index(name="idx_pa_reverse", columns={"address_id", "person_id"}),
  *                                     @ORM\Index(name="idx_pa_type", columns={"type_id"}),
@@ -70,10 +71,10 @@ class PeopleAddresses {
      * @throws \Exception
      */
     public function __construct(People $person, Addresses $address, AddressTypes $type) {
-//        $this->createdAt = new \DateTimeImmutable();
-        $this->address = $address;
+        $this->createdAt = new \DateTimeImmutable();
         $this->person = $person;
         $this->type = $type;
+        $this->address = $address;
     }
     /**
      * Get address.

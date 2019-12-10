@@ -46,6 +46,7 @@ declare(strict_types=1);
  * @copyright 2019 Michael Cummings
  * @license   BSD-3-Clause
  */
+
 namespace PersonDBSkeleton\Model\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -64,10 +65,17 @@ class PeoplePhoneNumbers {
     /**
      * PeoplePhoneNumbers constructor.
      *
+     * @param People       $person
+     * @param PhoneNumbers $phone
+     * @param PhoneTypes   $type
+     *
      * @throws \Exception
      */
-    public function __construct() {
+    public function __construct(People $person, PhoneNumbers $phone, PhoneTypes $type) {
         $this->createdAt = new \DateTimeImmutable();
+        $this->person = $person;
+        $this->phone = $phone;
+        $this->type = $type;
     }
     /**
      * Get comment.

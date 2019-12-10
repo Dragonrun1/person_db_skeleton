@@ -63,11 +63,14 @@ class PeoplePhotos {
     /**
      * PeoplePhotos constructor.
      *
+     * @param string $photo
+     *
      * @throws \Exception
      */
-    public function __construct() {
+    public function __construct(string $photo) {
         $this->createdAt = new \DateTimeImmutable();
         $this->id = $this->asBase64();
+        $this->photo = $photo;
     }
     /**
      * Get mimeType.

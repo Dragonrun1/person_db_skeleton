@@ -63,11 +63,14 @@ class PhoneTypes {
     /**
      * PhoneTypes constructor.
      *
+     * @param string $type
+     *
      * @throws \Exception
      */
-    public function __construct() {
+    public function __construct(string $type) {
         $this->createdAt = new \DateTimeImmutable();
         $this->id = $this->asBase64();
+        $this->type = $type;
     }
     /**
      * Get type.
@@ -93,5 +96,5 @@ class PhoneTypes {
      *
      * @ORM\Column(name="type", type="string", length=50, nullable=false)
      */
-    private $type = '';
+    private $type;
 }

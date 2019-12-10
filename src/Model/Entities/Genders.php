@@ -46,6 +46,7 @@ declare(strict_types=1);
  * @copyright 2019 Michael Cummings
  * @license   BSD-3-Clause
  */
+
 namespace PersonDBSkeleton\Model\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -68,11 +69,14 @@ class Genders {
     /**
      * Genders constructor.
      *
+     * @param string $sex
+     *
      * @throws \Exception
      */
-    public function __construct() {
+    public function __construct(string $sex) {
         $this->createdAt = new \DateTimeImmutable();
         $this->id = $this->asBase64();
+        $this->sex = $sex;
     }
     /**
      * Get genderIdentity.

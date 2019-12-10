@@ -66,11 +66,14 @@ class Emails {
     /**
      * Constructor
      *
+     * @param string $email
+     *
      * @throws \Exception
      */
-    public function __construct() {
+    public function __construct(string $email) {
         $this->createdAt = new \DateTimeImmutable();
         $this->id = $this->asBase64();
+        $this->email = $email;
         $this->person = new ArrayCollection();
     }
     /**
@@ -126,7 +129,7 @@ class Emails {
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
-    private $email = '';
+    private $email;
     /**
      * @var Collection
      *

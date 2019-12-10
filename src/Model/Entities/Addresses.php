@@ -66,12 +66,19 @@ class Addresses {
     /**
      * Addresses constructor.
      *
+     * @param string $locality
+     * @param string $countryName
+     * @param string $postalCode
+     *
      * @throws \Exception
      */
-    public function __construct() {
+    public function __construct(string $locality, string $countryName, string $postalCode) {
         $this->createdAt = new \DateTimeImmutable();
         $this->id = $this->asBase64();
         $this->people = new ArrayCollection();
+        $this->locality = $locality;
+        $this->countryName = $countryName;
+        $this->postalCode = $postalCode;
     }
     /**
      * Add person.
