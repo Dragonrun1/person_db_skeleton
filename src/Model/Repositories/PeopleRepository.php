@@ -46,10 +46,23 @@ declare(strict_types=1);
  * @copyright 2019 Michael Cummings
  * @license   BSD-3-Clause
  */
+
 namespace PersonDBSkeleton\Model\Repositories;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Query\Expr;
+use PersonDBSkeleton\Model\Entities\Addresses;
+use PersonDBSkeleton\Model\Entities\AddressTypes;
+use PersonDBSkeleton\Model\Entities\Emails;
+use PersonDBSkeleton\Model\Entities\EmailTypes;
+use PersonDBSkeleton\Model\Entities\People;
+use PersonDBSkeleton\Model\Entities\PeopleAddresses;
+use PersonDBSkeleton\Model\Entities\PeopleEmails;
+use PersonDBSkeleton\Model\Entities\PeoplePhoneNumbers;
+use PersonDBSkeleton\Model\Entities\PhoneNumbers;
+use PersonDBSkeleton\Model\Entities\PhoneTypes;
 
 /**
  * People
@@ -59,6 +72,76 @@ use Doctrine\ORM\Query\Expr;
  */
 class PeopleRepository extends EntityRepository {
     use ArrayExceptionCommon;
+    /**
+     * @param People       $person
+     * @param Addresses    $address
+     * @param AddressTypes $type
+     *
+     * @return PeopleAddresses
+     * @throws ORMException
+     * @throws OptimisticLockException
+     * @throws \Exception
+     */
+    public function addAddress(People $person, Addresses $address, AddressTypes $type): PeopleAddresses {
+        $em = $this->getEntityManager();
+        $em->persist($person);
+        $em->persist($address);
+        $em->persist($type);
+        // Needed to insure the above instances have IDs.
+        $em->flush();
+        $pa = $this->findOnePeopleAddressBy($person, $address, $type) ?? new PeopleAddresses($person, $address, $type);
+        $person->getAddresses()
+               ->add($pa);
+        $em->persist($pa);
+        return $pa;
+    }
+    /**
+     * @param People     $person
+     * @param Emails     $email
+     * @param EmailTypes $type
+     *
+     * @return PeopleEmails
+     * @throws ORMException
+     * @throws OptimisticLockException
+     * @throws \Exception
+     */
+    public function addEmail(People $person, Emails $email, EmailTypes $type): PeopleEmails {
+        $em = $this->getEntityManager();
+        $em->persist($person);
+        $em->persist($email);
+        $em->persist($type);
+        // Needed to insure the above instances have IDs.
+        $em->flush();
+        $pe = $this->findOnePeopleEmailBy($person, $email, $type) ?? new PeopleEmails($person, $email, $type);
+        $person->getEmails()
+               ->add($pe);
+        return $pe;
+    }
+    /**
+     * @param People       $person
+     * @param PhoneNumbers $phone
+     * @param PhoneTypes   $type
+     *
+     * @return PeoplePhoneNumbers
+     * @throws ORMException
+     * @throws OptimisticLockException
+     * @throws \Exception
+     */
+    public function addPhone(People $person, PhoneNumbers $phone, PhoneTypes $type): PeoplePhoneNumbers {
+        $em = $this->getEntityManager();
+        $em->persist($person);
+        $em->persist($phone);
+        $em->persist($type);
+        // Needed to insure the above instances have IDs.
+        $em->flush();
+        $pp = $this->findOnePeoplePhoneNumberBy($person, $phone, $type) ?? new PeoplePhoneNumbers(
+                $person, $phone, $type
+            );
+        $person->getPhoneNumbers()
+               ->add($pp);
+        $em->persist($pp);
+        return $pp;
+    }
     /**
      * @param string $name
      *
@@ -74,5 +157,69 @@ class PeopleRepository extends EntityRepository {
                       ->setParameter('name', $name)
                       ->getQuery();
         return $query->getResult();
+    }
+    /**
+     * @param People       $person
+     * @param Addresses    $address
+     * @param AddressTypes $type
+     *
+     * @return PeopleAddresses|null
+     */
+    public function findOnePeopleAddressBy(People $person, Addresses $address, AddressTypes $type): ?PeopleAddresses {
+        /** @var PeopleAddresses $result */
+        $result = $this->getEntityManager()
+                       ->getRepository(PeopleAddresses::class)
+                       ->findOneBy(
+                           [
+                               'person' => $person->getId(),
+                               'address' => $address->getId(),
+                               'type' => $type->getId(),
+                           ]
+                       );
+        return $result;
+    }
+    /**
+     * @param People     $person
+     * @param Emails     $email
+     * @param EmailTypes $type
+     *
+     * @return PeopleEmails|null
+     */
+    public function findOnePeopleEmailBy(People $person, Emails $email, EmailTypes $type): ?PeopleEmails {
+        /** @var PeopleEmails $result */
+        $result = $this->getEntityManager()
+                       ->getRepository(PeopleEmails::class)
+                       ->findOneBy(
+                           [
+                               'person' => $person->getId(),
+                               'email' => $email->getId(),
+                               'type' => $type->getId(),
+                           ]
+                       );
+        return $result;
+    }
+    /**
+     * @param People       $person
+     * @param PhoneNumbers $phone
+     * @param PhoneTypes   $type
+     *
+     * @return PeoplePhoneNumbers|null
+     */
+    public function findOnePeoplePhoneNumberBy(
+        People $person,
+        PhoneNumbers $phone,
+        PhoneTypes $type
+    ): ?PeoplePhoneNumbers {
+        /** @var PeoplePhoneNumbers $result */
+        $result = $this->getEntityManager()
+                       ->getRepository(PeoplePhoneNumbers::class)
+                       ->findOneBy(
+                           [
+                               'person' => $person->getId(),
+                               'phone' => $phone->getId(),
+                               'type' => $type->getId(),
+                           ]
+                       );
+        return $result;
     }
 }
