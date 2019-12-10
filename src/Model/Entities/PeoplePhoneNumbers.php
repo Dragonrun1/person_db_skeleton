@@ -169,10 +169,8 @@ class PeoplePhoneNumbers {
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="PhoneTypes")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="type_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="PhoneTypes")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $type;
 }

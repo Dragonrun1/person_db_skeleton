@@ -168,10 +168,8 @@ class PeopleEmails {
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="EmailTypes")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="type_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="EmailTypes")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $type;
 }
