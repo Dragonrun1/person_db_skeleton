@@ -125,47 +125,12 @@ class PeopleEmails {
         return $this->type;
     }
     /**
-     * Set comment.
+     * @param string|null $value
      *
-     * @param string|null $comment
-     *
-     * @return PeopleEmails
+     * @return self Fluent interface
      */
-    public function setComment($comment = null): PeopleEmails {
-        $this->comment = $comment;
-        return $this;
-    }
-    /**
-     * Set email.
-     *
-     * @param Emails $email
-     *
-     * @return PeopleEmails
-     */
-    public function setEmail(Emails $email): PeopleEmails {
-        $this->email = $email;
-        return $this;
-    }
-    /**
-     * Set person.
-     *
-     * @param People $person
-     *
-     * @return PeopleEmails
-     */
-    public function setPerson(People $person): PeopleEmails {
-        $this->person = $person;
-        return $this;
-    }
-    /**
-     * Set type.
-     *
-     * @param EmailTypes $type
-     *
-     * @return PeopleEmails
-     */
-    public function setType(EmailTypes $type): PeopleEmails {
-        $this->type = $type;
+    public function setComment(?string $value): self {
+        $this->comment = $value;
         return $this;
     }
     /**

@@ -125,47 +125,12 @@ class PeopleAddresses {
         return $this->type;
     }
     /**
-     * Set address.
+     * @param string|null $value
      *
-     * @param Addresses $address
-     *
-     * @return PeopleAddresses
+     * @return self Fluent interface
      */
-    public function setAddress(Addresses $address): PeopleAddresses {
-        $this->address = $address;
-        return $this;
-    }
-    /**
-     * Set comment.
-     *
-     * @param string|null $comment
-     *
-     * @return PeopleAddresses
-     */
-    public function setComment($comment = null): PeopleAddresses {
-        $this->comment = $comment;
-        return $this;
-    }
-    /**
-     * Set person.
-     *
-     * @param People $person
-     *
-     * @return PeopleAddresses
-     */
-    public function setPerson(People $person): PeopleAddresses {
-        $this->person = $person;
-        return $this;
-    }
-    /**
-     * Set type.
-     *
-     * @param AddressTypes $type
-     *
-     * @return PeopleAddresses
-     */
-    public function setType(AddressTypes $type): PeopleAddresses {
-        $this->type = $type;
+    public function setComment(?string $value): self {
+        $this->comment = $value;
         return $this;
     }
     /**

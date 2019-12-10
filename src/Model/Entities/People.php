@@ -236,91 +236,75 @@ class People {
         return $this->photo;
     }
     /**
-     * Set additionalName.
+     * @param string|null $value
      *
-     * @param string|null $additionalName
-     *
-     * @return People
+     * @return self Fluent interface
      */
-    public function setAdditionalName($additionalName = null): People {
-        $this->additionalName = $additionalName;
+    public function setAdditionalName(?string $value): self {
+        $this->additionalName = $value;
         return $this;
     }
     /**
-     * Set birthday.
+     * @param \DateTimeImmutable|null $value
      *
-     * @param \DateTimeImmutable|null $birthday
-     *
-     * @return People
+     * @return self Fluent interface
      */
-    public function setBirthday(\DateTimeImmutable $birthday = null): People {
-        $this->birthday = $birthday;
+    public function setBirthday(?\DateTimeImmutable $value): self {
+        $this->birthday = $value;
         return $this;
     }
     /**
-     * Set familyName.
+     * @param string $value
      *
-     * @param string $familyName
-     *
-     * @return People
+     * @return self Fluent interface
      */
-    public function setFamilyName($familyName): People {
-        $this->familyName = $familyName;
+    public function setFamilyName(string $value): self {
+        $this->familyName = $value;
         return $this;
     }
     /**
-     * Set gender.
+     * @param Genders $value
      *
-     * @param Genders|null $gender
-     *
-     * @return People
+     * @return self Fluent interface
      */
-    public function setGender(Genders $gender = null): People {
-        $this->gender = $gender;
+    public function setGender(Genders $value): self {
+        $this->gender = $value;
         return $this;
     }
     /**
-     * Set givenName.
+     * @param string $value
      *
-     * @param string $givenName
-     *
-     * @return People
+     * @return self Fluent interface
      */
-    public function setGivenName($givenName): People {
-        $this->givenName = $givenName;
+    public function setGivenName(string $value): self {
+        $this->givenName = $value;
         return $this;
     }
     /**
-     * Set honorificPrefix.
+     * @param string|null $value
      *
-     * @param string|null $honorificPrefix
-     *
-     * @return People
+     * @return self Fluent interface
      */
-    public function setHonorificPrefix($honorificPrefix = null): People {
-        $this->honorificPrefix = $honorificPrefix;
+    public function setHonorificPrefix(?string $value): self {
+        $this->honorificPrefix = $value;
         return $this;
     }
     /**
-     * Set honorificSuffix.
+     * @param string|null $value
      *
-     * @param string|null $honorificSuffix
-     *
-     * @return People
+     * @return self Fluent interface
      */
-    public function setHonorificSuffix($honorificSuffix = null): People {
-        $this->honorificSuffix = $honorificSuffix;
+    public function setHonorificSuffix(?string $value): self {
+        $this->honorificSuffix = $value;
         return $this;
     }
     /**
-     * Set photo.
+     * @param PeoplePhotos $value
      *
-     * @param PeoplePhotos|null $photo
-     *
-     * @return People
+     * @return self Fluent interface
      */
-    public function setPhoto(PeoplePhotos $photo = null): People {
-        $this->photo = $photo;
+    public function setPhoto(PeoplePhotos $value): self {
+        $this->photo = $value;
         return $this;
     }
     /**

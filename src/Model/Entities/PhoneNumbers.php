@@ -114,17 +114,6 @@ class PhoneNumbers {
         return $this->phone;
     }
     /**
-     * Set phone.
-     *
-     * @param string $phone
-     *
-     * @return PhoneNumbers
-     */
-    public function setPhone($phone): PhoneNumbers {
-        $this->phone = $phone;
-        return $this;
-    }
-    /**
      * @var Collection
      *
      * @ORM\OneToMany(targetEntity="PeoplePhoneNumbers", mappedBy="phone", fetch="EXTRA_LAZY")

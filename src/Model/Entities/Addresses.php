@@ -158,88 +158,72 @@ class Addresses {
         return $this->region;
     }
     /**
-     * Get streetAddress.
-     *
      * @return string|null
      */
     public function getStreetAddress(): ?string {
         return $this->streetAddress;
     }
     /**
-     * Set countryName.
+     * @param string $value
      *
-     * @param string $countryName
-     *
-     * @return Addresses
+     * @return self Fluent interface
      */
-    public function setCountryName($countryName): Addresses {
-        $this->countryName = $countryName;
+    public function setCountryName(string $value): self {
+        $this->countryName = $value;
         return $this;
     }
     /**
-     * Set extendedAddress.
+     * @param string|null $value
      *
-     * @param string|null $extendedAddress
-     *
-     * @return Addresses
+     * @return self Fluent interface
      */
-    public function setExtendedAddress($extendedAddress = null): Addresses {
-        $this->extendedAddress = $extendedAddress;
+    public function setExtendedAddress(?string $value): self {
+        $this->extendedAddress = $value;
         return $this;
     }
     /**
-     * Set locality.
+     * @param string $value
      *
-     * @param string $locality
-     *
-     * @return Addresses
+     * @return self Fluent interface
      */
-    public function setLocality($locality): Addresses {
-        $this->locality = $locality;
+    public function setLocality(string $value): self {
+        $this->locality = $value;
         return $this;
     }
     /**
-     * Set postOfficeBox.
+     * @param string|null $value
      *
-     * @param string|null $postOfficeBox
-     *
-     * @return Addresses
+     * @return self Fluent interface
      */
-    public function setPostOfficeBox($postOfficeBox = null): Addresses {
-        $this->postOfficeBox = $postOfficeBox;
+    public function setPostOfficeBox(?string $value): self {
+        $this->postOfficeBox = $value;
         return $this;
     }
     /**
-     * Set postalCode.
+     * @param string $value
      *
-     * @param string $postalCode
-     *
-     * @return Addresses
+     * @return self Fluent interface
      */
-    public function setPostalCode($postalCode): Addresses {
-        $this->postalCode = $postalCode;
+    public function setPostalCode(string $value): self {
+        $this->postalCode = $value;
         return $this;
     }
     /**
-     * Set region.
+     * @param string|null $value
      *
-     * @param string $region
-     *
-     * @return Addresses
+     * @return self Fluent interface
      */
-    public function setRegion($region): Addresses {
-        $this->region = $region;
+    public function setRegion(?string $value): self {
+        $this->region = $value;
         return $this;
     }
     /**
-     * Set streetAddress.
+     * @param string|null $value
      *
-     * @param string|null $streetAddress
-     *
-     * @return Addresses
+     * @return self Fluent interface
      */
-    public function setStreetAddress($streetAddress = null): Addresses {
-        $this->streetAddress = $streetAddress;
+    public function setStreetAddress(?string $value): self {
+        $this->streetAddress = $value;
         return $this;
     }
     /**

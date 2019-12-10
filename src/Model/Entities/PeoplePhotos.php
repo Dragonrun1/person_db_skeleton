@@ -46,6 +46,7 @@ declare(strict_types=1);
  * @copyright 2019 Michael Cummings
  * @license   BSD-3-Clause
  */
+
 namespace PersonDBSkeleton\Model\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -64,13 +65,15 @@ class PeoplePhotos {
      * PeoplePhotos constructor.
      *
      * @param string $photo
+     * @param string $mimeType
      *
      * @throws \Exception
      */
-    public function __construct(string $photo) {
+    public function __construct(string $photo, string $mimeType) {
         $this->createdAt = new \DateTimeImmutable();
         $this->id = $this->asBase64();
         $this->photo = $photo;
+        $this->mimeType = $mimeType;
     }
     /**
      * Get mimeType.
@@ -89,33 +92,11 @@ class PeoplePhotos {
         return $this->photo;
     }
     /**
-     * Set mimeType.
-     *
-     * @param string $mimeType
-     *
-     * @return PeoplePhotos
-     */
-    public function setMimeType($mimeType): PeoplePhotos {
-        $this->mimeType = $mimeType;
-        return $this;
-    }
-    /**
-     * Set photo.
-     *
-     * @param string $photo
-     *
-     * @return PeoplePhotos
-     */
-    public function setPhoto($photo): PeoplePhotos {
-        $this->photo = $photo;
-        return $this;
-    }
-    /**
      * @var string
      *
      * @ORM\Column(name="mime_type", type="string", length=50, nullable=false)
      */
-    private $mimeType = '';
+    private $mimeType;
     /**
      * @var string
      *

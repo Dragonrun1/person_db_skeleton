@@ -95,25 +95,12 @@ class Genders {
         return $this->sex;
     }
     /**
-     * Set genderIdentity.
+     * @param string|null $value
      *
-     * @param string|null $genderIdentity
-     *
-     * @return Genders
+     * @return self Fluent interface
      */
-    public function setGenderIdentity($genderIdentity = null): Genders {
-        $this->genderIdentity = $genderIdentity;
-        return $this;
-    }
-    /**
-     * Set sex.
-     *
-     * @param string $sex
-     *
-     * @return Genders
-     */
-    public function setSex($sex): Genders {
-        $this->sex = $sex;
+    public function setGenderIdentity(?string $value): self {
+        $this->genderIdentity = $value;
         return $this;
     }
     /**

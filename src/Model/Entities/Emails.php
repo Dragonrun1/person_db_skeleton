@@ -114,17 +114,6 @@ class Emails {
         return $this->person;
     }
     /**
-     * Set email.
-     *
-     * @param string $email
-     *
-     * @return Emails
-     */
-    public function setEmail($email): Emails {
-        $this->email = $email;
-        return $this;
-    }
-    /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=false)

@@ -126,47 +126,12 @@ class PeoplePhoneNumbers {
         return $this->type;
     }
     /**
-     * Set comment.
+     * @param string|null $value
      *
-     * @param string|null $comment
-     *
-     * @return PeoplePhoneNumbers
+     * @return self Fluent interface
      */
-    public function setComment($comment = null): PeoplePhoneNumbers {
-        $this->comment = $comment;
-        return $this;
-    }
-    /**
-     * Set person.
-     *
-     * @param People $person
-     *
-     * @return PeoplePhoneNumbers
-     */
-    public function setPerson(People $person): PeoplePhoneNumbers {
-        $this->person = $person;
-        return $this;
-    }
-    /**
-     * Set phone.
-     *
-     * @param PhoneNumbers $phone
-     *
-     * @return PeoplePhoneNumbers
-     */
-    public function setPhone(PhoneNumbers $phone): PeoplePhoneNumbers {
-        $this->phone = $phone;
-        return $this;
-    }
-    /**
-     * Set type.
-     *
-     * @param PhoneTypes $type
-     *
-     * @return PeoplePhoneNumbers
-     */
-    public function setType(PhoneTypes $type): PeoplePhoneNumbers {
-        $this->type = $type;
+    public function setComment(?string $value): self {
+        $this->comment = $value;
         return $this;
     }
     /**
