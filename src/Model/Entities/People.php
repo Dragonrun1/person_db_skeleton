@@ -321,7 +321,7 @@ class People {
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="PeopleAddresses", mappedBy="person", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="PeopleAddresses", mappedBy="person", fetch="EXTRA_LAZY", orphanRemoval=true)
      */
     private $addresses;
     /**
@@ -333,7 +333,7 @@ class People {
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="PeopleEmails", mappedBy="person", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="PeopleEmails", mappedBy="person", fetch="EXTRA_LAZY", orphanRemoval=true)
      */
     private $emails;
     /**
@@ -392,7 +392,7 @@ class People {
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="PeoplePhoneNumbers", mappedBy="person", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="PeoplePhoneNumbers", mappedBy="person", fetch="EXTRA_LAZY", orphanRemoval=true)
      */
     private $phoneNumbers;
     /**
