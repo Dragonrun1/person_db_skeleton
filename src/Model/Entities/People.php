@@ -92,7 +92,7 @@ class People {
      * @return People
      */
     public function addAddress(PeopleAddresses $address): People {
-        $this->addresses[] = $address;
+        $this->addresses->add($address);
         return $this;
     }
     /**
@@ -103,7 +103,7 @@ class People {
      * @return People
      */
     public function addEmail(PeopleEmails $email): People {
-        $this->emails[] = $email;
+        $this->emails->add($email);
         return $this;
     }
     /**
@@ -114,7 +114,7 @@ class People {
      * @return People
      */
     public function addPhoneNumber(PeoplePhoneNumbers $phoneNumber): People {
-        $this->phoneNumbers[] = $phoneNumber;
+        $this->phoneNumbers->add($phoneNumber);
         return $this;
     }
     /**

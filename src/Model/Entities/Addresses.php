@@ -88,7 +88,7 @@ class Addresses {
      * @return Addresses
      */
     public function addPerson(PeopleAddresses $person): Addresses {
-        $this->people[] = $person;
+        $this->people->add($person);
         return $this;
     }
     /**
@@ -154,7 +154,7 @@ class Addresses {
      *
      * @return string
      */
-    public function getRegion(): string {
+    public function getRegion(): ?string {
         return $this->region;
     }
     /**

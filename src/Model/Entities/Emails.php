@@ -84,7 +84,7 @@ class Emails {
      * @return Emails
      */
     public function addPerson(PeopleEmails $person): Emails {
-        $this->person[] = $person;
+        $this->person->add($person);
         return $this;
     }
     /**
