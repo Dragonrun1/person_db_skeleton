@@ -54,10 +54,22 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Many to many join table for people and addresses.
  *
- * @ORM\Table(name="people_addresses", indexes={@ORM\Index(name="idx_pa_reverse", columns={"address_id", "person_id"}),
- *                                     @ORM\Index(name="idx_pa_type", columns={"type_id"}),
- *                                     @ORM\Index(name="idx_pa_address", columns={"address_id"}),
- *                                     @ORM\Index(name="idx_pa_person", columns={"person_id"})})
+ * Unique constraint enforces a person having one home, work, etc addresses.
+ * For rare instances where more then one is needed have a new type like:
+ * home secondary, work2, etc can be used.
+ *
+ * @ORM\Table(
+ *     name="people_addresses",
+ *     indexes={
+ *         @ORM\Index(name="idx_pa_reverse", columns={"address_id", "person_id"}),
+ *         @ORM\Index(name="idx_pa_type", columns={"type_id"}),
+ *         @ORM\Index(name="idx_pa_address", columns={"address_id"}),
+ *         @ORM\Index(name="idx_pa_person", columns={"person_id"})
+ *     },
+ *     uniqueConstraints={
+ *         @ORM\UniqueConstraint(name="unq_pa_person_type", columns={"person_id", "type_id"})
+ *     }
+ * )
  * @ORM\Entity
  */
 class PeopleAddresses {

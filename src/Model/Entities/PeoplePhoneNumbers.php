@@ -54,11 +54,23 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PeoplePhoneNumbers
  *
- * @ORM\Table(name="people_phone_numbers", indexes={
- *     @ORM\Index(name="idx_ppn_reverse", columns={"phone_id", "person_id"}),
- *     @ORM\Index(name="fk_ppn_type", columns={"type_id"}),
- *     @ORM\Index(name="idx_ppn_person", columns={"person_id"}),
- *     @ORM\Index(name="idx_ppn_phone", columns={"phone_id"})})
+ * Unique constraint enforces a person having one home, cell, work, etc phone
+ * numbers.
+ * For rare instances where more then one is needed have a new type like:
+ * 2nd personal cell, work2, etc can be used.
+ *
+ * @ORM\Table(
+ *     name="people_phone_numbers",
+ *     indexes={
+ *         @ORM\Index(name="idx_ppn_reverse", columns={"phone_id", "person_id"}),
+ *         @ORM\Index(name="idx_ppn_type", columns={"type_id"}),
+ *         @ORM\Index(name="idx_ppn_person", columns={"person_id"}),
+ *         @ORM\Index(name="idx_ppn_phone", columns={"phone_id"})
+ *     },
+ *     uniqueConstraints={
+ *         @ORM\UniqueConstraint(name="unq_ppn_person_type", columns={"person_id", "type_id"})
+ *     }
+ * )
  * @ORM\Entity
  */
 class PeoplePhoneNumbers {

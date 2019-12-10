@@ -54,10 +54,22 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PeopleEmails
  *
- * @ORM\Table(name="people_emails", indexes={@ORM\Index(name="idx_pe_reverse", columns={"email_id", "person_id"}),
- *                                     @ORM\Index(name="idx_pe_type", columns={"type_id"}),
- *                                     @ORM\Index(name="idx_pe_email", columns={"email_id"}),
- *                                     @ORM\Index(name="idx_pe_person", columns={"person_id"})})
+ * Unique constraint enforces a person having one personal, work, etc emails.
+ * For rare instances where more then one is needed have a new type like:
+ * personal secondary, work2, etc can be used.
+ *
+ * @ORM\Table(
+ *     name="people_emails",
+ *     indexes={
+ *         @ORM\Index(name="idx_pe_reverse", columns={"email_id", "person_id"}),
+ *         @ORM\Index(name="idx_pe_type", columns={"type_id"}),
+ *         @ORM\Index(name="idx_pe_email", columns={"email_id"}),
+ *         @ORM\Index(name="idx_pe_person", columns={"person_id"})
+ *     },
+ *     uniqueConstraints={
+ *         @ORM\UniqueConstraint(name="unq_pe_person_type", columns={"person_id", "type_id"})
+ *     }
+ * )
  * @ORM\Entity
  */
 class PeopleEmails {
