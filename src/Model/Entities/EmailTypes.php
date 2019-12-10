@@ -54,7 +54,12 @@ use PersonDBSkeleton\Utils\Uuid4;
 /**
  * EmailTypes
  *
- * @ORM\Table(name="email_types")
+ * @ORM\Table(
+ *     name="email_types",
+ *     uniqueConstraints={
+ *         @ORM\UniqueConstraint(name="unq_et_type", columns={"type"})
+ *     }
+ * )
  * @ORM\Entity
  */
 class EmailTypes {
@@ -81,20 +86,9 @@ class EmailTypes {
         return $this->type;
     }
     /**
-     * Set type.
-     *
-     * @param string $type
-     *
-     * @return EmailTypes
-     */
-    public function setType($type): EmailTypes {
-        $this->type = $type;
-        return $this;
-    }
-    /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=50, nullable=false)
+     * @ORM\Column(name="type", type="string", length=50, nullable=false, unique=true)
      */
     private $type;
 }

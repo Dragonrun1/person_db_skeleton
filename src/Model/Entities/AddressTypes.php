@@ -55,7 +55,12 @@ use PersonDBSkeleton\Utils\Uuid4;
 /**
  * AddressTypes
  *
- * @ORM\Table(name="address_types")
+ * @ORM\Table(
+ *     name="address_types",
+ *     uniqueConstraints={
+ *         @ORM\UniqueConstraint(name="unq_at_type", columns={"type"})
+ *     }
+ * )
  * @ORM\Entity
  */
 class AddressTypes {
@@ -82,20 +87,9 @@ class AddressTypes {
         return $this->type;
     }
     /**
-     * Set type.
-     *
-     * @param string $type
-     *
-     * @return AddressTypes
-     */
-    public function setType($type): AddressTypes {
-        $this->type = $type;
-        return $this;
-    }
-    /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=50, nullable=false)
+     * @ORM\Column(name="type", type="string", length=50, nullable=false, unique=true)
      */
     private $type;
 }
