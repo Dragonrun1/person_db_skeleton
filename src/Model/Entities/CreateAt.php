@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
- * Contains class Uuid64Type.
+ * Contains trait CreateAt.
  *
  * PHP version 7.3
  *
@@ -47,72 +47,33 @@ declare(strict_types=1);
  * @copyright 2019 Michael Cummings
  * @license   BSD-3-Clause
  */
-namespace PersonDBSkeleton\Model\Types;
 
-use Doctrine\DBAL\DBALException;
-use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\BinaryType;
-use PersonDBSkeleton\Utils\Uuid4;
+namespace PersonDBSkeleton\Model\Entities;
 
 /**
- * Custom doctrine UUID v4 (random) datatype using custom base 64 encoding.
+ * Trait CreateAt.
  */
-class Uuid64Type extends BinaryType {
-    use Uuid4;
-    public const UUID64 = 'uuid64';
+trait CreateAt {
     /**
-     * Converts a value from its PHP representation to its database representation
-     * of this type.
+     * Date and time when entity was created.
      *
-     * @param mixed            $value    The value to convert.
-     * @param AbstractPlatform $platform The currently used database platform.
+     * Note:
+     * Doctrine often will return date-times as plain string instead of correct
+     * object so this method will correct it when called.
      *
-     * @return mixed The database representation of the value.
+     * @return \DateTimeImmutable
+     * @throws \Exception
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform) {
-        return (string)$value;
-    }
-    /**
-     * Converts a value from its database representation to its PHP representation
-     * of this type.
-     *
-     * @param mixed            $value    The value to convert.
-     * @param AbstractPlatform $platform The currently used database platform.
-     *
-     * @return mixed The PHP representation of the value.
-     */
-    public function convertToPHPValue($value, AbstractPlatform $platform) {
-        if (null === $value) {
-            return null;
+    public function getCreatedAt(): \DateTimeImmutable {
+        if (!$this->createdAt instanceof \DateTimeImmutable) {
+            $this->createdAt = new \DateTimeImmutable($this->createdAt);
         }
-        return (string)$value;
+        return $this->createdAt;
     }
     /**
-     * Gets the name of this type.
+     * @var \DateTimeImmutable
      *
-     * This is the name you will need in Doctrine ORM to use the type.
-     *
-     * @return string
+     * @ORM\Column(name="created_at", type="datetime_immutable", nullable=false)
      */
-    public function getName(): string {
-        return self::UUID64;
-    }
-    /**
-     * {@inheritdoc}
-     * @throws DBALException
-     */
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string {
-        $dec = \array_merge($fieldDeclaration, ['length' => 22, 'fixed' => true]);
-        return parent::getSQLDeclaration($dec, $platform);
-    }
-    /**
-     * Force SQL comment containing DC2Type so Doctrine reverse engineering works correctly.
-     *
-     * @param AbstractPlatform $platform
-     *
-     * @return bool
-     */
-    public function requiresSQLCommentHint(AbstractPlatform $platform): bool {
-        return true;
-    }
+    private $createdAt;
 }

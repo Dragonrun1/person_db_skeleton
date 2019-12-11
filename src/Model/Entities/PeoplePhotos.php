@@ -50,7 +50,8 @@ declare(strict_types=1);
 namespace PersonDBSkeleton\Model\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
-use PersonDBSkeleton\Utils\Uuid4;
+use Uuid64Type\Entity\Uuid64Id;
+use Uuid64Type\Uuid4;
 
 /**
  * PeoplePhotos
@@ -59,8 +60,10 @@ use PersonDBSkeleton\Utils\Uuid4;
  * @ORM\Entity
  */
 class PeoplePhotos {
-    use EntityCommon;
+    use CreateAt;
+    use Json;
     use Uuid4;
+    use Uuid64Id;
     /**
      * PeoplePhotos constructor.
      *

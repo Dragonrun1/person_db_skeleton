@@ -46,10 +46,12 @@ declare(strict_types=1);
  * @copyright 2019 Michael Cummings
  * @license   BSD-3-Clause
  */
+
 namespace PersonDBSkeleton\Model\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
-use PersonDBSkeleton\Utils\Uuid4;
+use Uuid64Type\Entity\Uuid64Id;
+use Uuid64Type\Uuid4;
 
 /**
  * EmailTypes
@@ -63,8 +65,10 @@ use PersonDBSkeleton\Utils\Uuid4;
  * @ORM\Entity
  */
 class EmailTypes {
-    use EntityCommon;
+    use CreateAt;
+    use Json;
     use Uuid4;
+    use Uuid64Id;
     /**
      * EmailTypes constructor.
      *

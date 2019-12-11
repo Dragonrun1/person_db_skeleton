@@ -31,7 +31,8 @@
         "ext-pdo_mysql": "*",
         "ext-sodium": "*",
         "doctrine/migrations": "^2.2",
-        "doctrine/orm": "^2.7"
+        "doctrine/orm": "^2.7",
+        "dragonrun1/uuid64type": "dev-master"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master"

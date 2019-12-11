@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
- * Contains class Uuid64Generator.
+ * Contains trait Json.
  *
  * PHP version 7.3
  *
@@ -47,27 +47,34 @@ declare(strict_types=1);
  * @copyright 2019 Michael Cummings
  * @license   BSD-3-Clause
  */
-namespace PersonDBSkeleton\Model;
 
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Id\AbstractIdGenerator;
-use PersonDBSkeleton\Utils\Uuid4;
+namespace PersonDBSkeleton\Model\Entities;
 
 /**
- * Class Uuid64Generator.
+ * Trait Json.
  */
-class Uuid64Generator extends AbstractIdGenerator {
-    use Uuid4;
+trait Json {
     /**
-     * Generates an identifier for an entity.
+     * Simple entity JSON serializer implementation.
      *
-     * @param EntityManager $em
-     * @param object|null   $entity
+     * Should be usable directly by most Doctrine Entity classes without
+     * overriding.
      *
-     * @return mixed
-     * @throws \Exception
+     * @return array
      */
-    public function generate(EntityManager $em, $entity) {
-        return $this->asBase64();
+    public function jsonSerialize(): array {
+        $result = [];
+        foreach ($this as $k => $v) {
+            if ($v instanceof \DateTimeInterface) {
+                $v = $v->format('Y-m-d\TH:i:sO');
+            }
+            $result[$k] = $v;
+        }
+        // Filter out any unneeded Doctrine Entity Proxy c**p.
+        unset($result['__initializer__'], $result['__cloner__'], $result['__isInitialized__']);
+        // Filter sensitive properties.
+        /** @noinspection UnsetConstructsCanBeMergedInspection */
+        unset($result['password']);
+        return $result;
     }
 }
