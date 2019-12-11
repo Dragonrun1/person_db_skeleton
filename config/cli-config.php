@@ -55,8 +55,8 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Doctrine\ORM\Tools\Setup;
-use PersonDBSkeleton\Model\Types\Uuid64Type;
 use Symfony\Component\Console\Helper\HelperSet;
+use Uuid64Type\Type\Uuid64Type;
 
 $paths = [dirname(__DIR__, 1) . '/src/Model/Entities'];
 $isDevMode = true;
