@@ -78,7 +78,7 @@ class Genders {
      */
     public function __construct(string $sex) {
         $this->createdAt = new \DateTimeImmutable();
-        $this->id = $this->asBase64();
+        $this->id = self::asBase64();
         $this->sex = $sex;
     }
     /**

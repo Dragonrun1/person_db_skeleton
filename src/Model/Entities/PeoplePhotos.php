@@ -74,7 +74,7 @@ class PeoplePhotos {
      */
     public function __construct(string $photo, string $mimeType) {
         $this->createdAt = new \DateTimeImmutable();
-        $this->id = $this->asBase64();
+        $this->id = self::asBase64();
         $this->photo = $photo;
         $this->mimeType = $mimeType;
     }

@@ -77,7 +77,7 @@ class Addresses {
      */
     public function __construct(string $locality, string $countryName, string $postalCode) {
         $this->createdAt = new \DateTimeImmutable();
-        $this->id = $this->asBase64();
+        $this->id = self::asBase64();
         $this->people = new ArrayCollection();
         $this->locality = $locality;
         $this->countryName = $countryName;

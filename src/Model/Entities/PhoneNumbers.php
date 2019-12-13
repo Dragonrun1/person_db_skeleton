@@ -75,7 +75,7 @@ class PhoneNumbers {
      */
     public function __construct(string $phone) {
         $this->createdAt = new \DateTimeImmutable();
-        $this->id = $this->asBase64();
+        $this->id = self::asBase64();
         $this->phone = $phone;
         $this->people = new ArrayCollection();
     }

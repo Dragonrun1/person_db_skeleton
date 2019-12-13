@@ -75,7 +75,7 @@ class Emails {
      */
     public function __construct(string $email) {
         $this->createdAt = new \DateTimeImmutable();
-        $this->id = $this->asBase64();
+        $this->id = self::asBase64();
         $this->email = $email;
         $this->person = new ArrayCollection();
     }

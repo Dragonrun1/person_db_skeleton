@@ -82,7 +82,7 @@ class People {
         $this->createdAt = new \DateTimeImmutable();
         $this->familyName = $familyName;
         $this->givenName = $givenName;
-        $this->id = $this->asBase64();
+        $this->id = self::asBase64();
         $this->emails = new ArrayCollection();
         $this->addresses = new ArrayCollection();
         $this->phoneNumbers = new ArrayCollection();
