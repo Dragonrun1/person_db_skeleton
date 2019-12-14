@@ -49,8 +49,7 @@ declare(strict_types=1);
 
 namespace PersonDBSkeleton\Model\Entities;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\{ArrayCollection, Collection};
 use Doctrine\ORM\Mapping as ORM;
 use Uuid64Type\Entity\Uuid64Id;
 use Uuid64Type\Uuid4;

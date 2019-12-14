@@ -49,20 +49,18 @@ declare(strict_types=1);
 
 namespace PersonDBSkeleton\Model\Repositories;
 
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\ORMException;
-use Doctrine\ORM\Query\Expr;
-use PersonDBSkeleton\Model\Entities\Addresses;
-use PersonDBSkeleton\Model\Entities\AddressTypes;
-use PersonDBSkeleton\Model\Entities\Emails;
-use PersonDBSkeleton\Model\Entities\EmailTypes;
-use PersonDBSkeleton\Model\Entities\People;
-use PersonDBSkeleton\Model\Entities\PeopleAddresses;
-use PersonDBSkeleton\Model\Entities\PeopleEmails;
-use PersonDBSkeleton\Model\Entities\PeoplePhoneNumbers;
-use PersonDBSkeleton\Model\Entities\PhoneNumbers;
-use PersonDBSkeleton\Model\Entities\PhoneTypes;
+use Doctrine\ORM\{EntityRepository, OptimisticLockException, ORMException, Query\Expr};
+use PersonDBSkeleton\Model\Entities\{Addresses,
+    AddressTypes,
+    Emails,
+    EmailTypes,
+    People,
+    PeopleAddresses,
+    PeopleEmails,
+    PeoplePhoneNumbers,
+    PhoneNumbers,
+    PhoneTypes
+};
 
 /**
  * People
