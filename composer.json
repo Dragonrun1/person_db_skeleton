@@ -32,9 +32,14 @@
         "ext-sodium": "*",
         "doctrine/migrations": "^2.2",
         "doctrine/orm": "^2.7",
-        "dragonrun1/uuid64type": "dev-master"
-    },
-    "require-dev": {
-        "roave/security-advisories": "dev-master"
+        "dragonrun1/uuid64type": "@dev"
+    }, "require-dev": {
+    "phpspec/nyan-formatters": "dev-master", "phpspec/phpspec": "^5.1.0", "roave/security-advisories": "dev-master"
+}, "repositories": {
+    "uuid64type": {
+        "type": "path", "url": "C:\\repos\\github\\Dragonrun1\\Uuid64Type", "options": {
+            "symlink": true
+        }
     }
+}
 }
