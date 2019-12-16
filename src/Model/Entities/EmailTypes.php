@@ -50,49 +50,11 @@ declare(strict_types=1);
 namespace PersonDBSkeleton\Model\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
-use Uuid64Type\Entity\Uuid64Id;
-use Uuid64Type\Uuid4;
 
 /**
  * EmailTypes
  *
- * @ORM\Table(
- *     name="email_types",
- *     uniqueConstraints={
- *         @ORM\UniqueConstraint(name="unq_et_type", columns={"type"})
- *     }
- * )
  * @ORM\Entity
  */
-class EmailTypes {
-    use CreateAt;
-    use Json;
-    use Uuid4;
-    use Uuid64Id;
-    /**
-     * EmailTypes constructor.
-     *
-     * @param string $type
-     *
-     * @throws \Exception
-     */
-    public function __construct(string $type) {
-        $this->createdAt = new \DateTimeImmutable();
-        $this->id = self::asBase64();
-        $this->type = $type;
-    }
-    /**
-     * Get type.
-     *
-     * @return string
-     */
-    public function getType(): string {
-        return $this->type;
-    }
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=50, nullable=false, unique=true)
-     */
-    private $type;
+class EmailTypes extends AbstractTypes {
 }

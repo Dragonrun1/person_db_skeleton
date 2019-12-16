@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
+ * Contains class AbstractTypes.
  *
  * PHP version 7.3
  *
@@ -50,11 +51,51 @@ declare(strict_types=1);
 namespace PersonDBSkeleton\Model\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use Uuid64Type\Entity\Uuid64Id;
+use Uuid64Type\Uuid4;
 
 /**
- * AddressTypes
+ * Class AbstractTypes.
  *
+ * @ORM\Table(
+ *     name="types",
+ *     uniqueConstraints={
+ *         @ORM\UniqueConstraint(name="unq_t_class_type", columns={"class_name", "type"})
+ *     }
+ * )
  * @ORM\Entity
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="class_name", fieldName="className")
  */
-class AddressTypes extends AbstractTypes {
+abstract class AbstractTypes {
+    use CreateAt;
+    use Json;
+    use Uuid4;
+    use Uuid64Id;
+    /**
+     * AbstractTypes constructor.
+     *
+     * @param string $type
+     *
+     * @throws \Exception
+     */
+    public function __construct(string $type) {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->id = self::asBase64();
+        $this->type = $type;
+    }
+    /**
+     * Get type.
+     *
+     * @return string
+     */
+    public function getType(): string {
+        return $this->type;
+    }
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=50, nullable=false)
+     */
+    protected $type;
 }

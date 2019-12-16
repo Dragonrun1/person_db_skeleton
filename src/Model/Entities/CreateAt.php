@@ -75,5 +75,5 @@ trait CreateAt {
      *
      * @ORM\Column(name="created_at", type="datetime_immutable", nullable=false)
      */
-    private $createdAt;
+    protected $createdAt;
 }
