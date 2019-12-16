@@ -175,12 +175,18 @@ class Addresses {
         return $this;
     }
     /**
+     * Extended address setter.
+     *
+     * Note:
+     * Only one of $postOfficeBox | $streetAddress/$ExtendedAddress may be set.
+     *
      * @param string|null $value
      *
      * @return self Fluent interface
      */
-    public function setExtendedAddress(?string $value): self {
+    public function setExtendedAddress(?string $value = null): self {
         $this->extendedAddress = $value;
+        $this->setPostOfficeBox();
         return $this;
     }
     /**
@@ -193,12 +199,19 @@ class Addresses {
         return $this;
     }
     /**
+     * Post office box setter.
+     *
+     * Note:
+     * Only one of $postOfficeBox | $streetAddress/$ExtendedAddress may be set.
+     *
      * @param string|null $value
      *
      * @return self Fluent interface
      */
-    public function setPostOfficeBox(?string $value): self {
+    public function setPostOfficeBox(?string $value = null): self {
         $this->postOfficeBox = $value;
+        $this->setStreetAddress();
+        $this->setExtendedAddress();
         return $this;
     }
     /**
@@ -220,12 +233,18 @@ class Addresses {
         return $this;
     }
     /**
+     * Street address setter.
+     *
+     * Note:
+     * Only one of $postOfficeBox | $streetAddress/$ExtendedAddress may be set.
+     *
      * @param string|null $value
      *
      * @return self Fluent interface
      */
-    public function setStreetAddress(?string $value): self {
+    public function setStreetAddress(?string $value = null): self {
         $this->streetAddress = $value;
+        $this->setPostOfficeBox();
         return $this;
     }
     /**
