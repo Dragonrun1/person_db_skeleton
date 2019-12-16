@@ -60,7 +60,7 @@ use Uuid64Type\Uuid4;
  * @ORM\Table(
  *     name="pronouns",
  *     uniqueConstraints={
- *         @ORM\UniqueConstraint(name="unq_p_pronouns", columns={"subject", "object", "possessive"})
+ *         @ORM\UniqueConstraint(name="unq_pr_pronouns", columns={"subject", "object", "possessive"})
  *     }
  * )
  * @ORM\Entity
