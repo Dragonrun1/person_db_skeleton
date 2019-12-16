@@ -58,9 +58,9 @@ use Doctrine\ORM\Tools\Setup;
 use Symfony\Component\Console\Helper\HelperSet;
 use Uuid64Type\Type\Uuid64Type;
 
-$paths = [dirname(__DIR__, 1) . '/src/Model/Entities'];
+$paths = [\dirname(__DIR__, 1) . '/src/Model/Entities'];
 $isDevMode = true;
-$dbParams = require 'migrations-db.php';
+$dbParams = require \dirname(__DIR__, 1) . '/migrations-db.php';
 try {
     $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode, null, null, false);
 } catch (AnnotationException $e) {
