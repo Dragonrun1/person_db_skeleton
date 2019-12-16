@@ -57,11 +57,17 @@ use Uuid64Type\Uuid4;
 /**
  * People
  *
- * @ORM\Table(name="people", indexes={
- *     @ORM\Index(name="fk_p_photo", columns={"photo_id"}),
- *     @ORM\Index(name="fk_p_gender", columns={"gender_id"}),
- *     @ORM\Index(name="idx_p_family_name", columns={"family_name"})
- * })
+ * @ORM\Table(
+ *     name="people",
+ *     indexes={
+ *         @ORM\Index(name="idx_p_family_name", columns={"family_name"}),
+ *         @ORM\Index(name="fk_p_gender", columns={"gender_id"}),
+ *         @ORM\Index(name="fk_p_pronoun", columns={"pronoun_id"}),
+ *     },
+ *     uniqueConstraints={
+ *         @ORM\UniqueConstraint(name="unq_p_photo", columns={"photo_id"})
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="PersonDBSkeleton\Model\Repositories\PeopleRepository")
  */
 class People {
@@ -238,6 +244,14 @@ class People {
         return $this->photo;
     }
     /**
+     * Get pronouns.
+     *
+     * @return Pronouns|null
+     */
+    public function getPronouns(): ?Pronouns {
+        return $this->pronouns;
+    }
+    /**
      * @param string|null $value
      *
      * @return self Fluent interface
@@ -265,11 +279,11 @@ class People {
         return $this;
     }
     /**
-     * @param Genders $value
+     * @param Genders|null $value
      *
      * @return self Fluent interface
      */
-    public function setGender(Genders $value): self {
+    public function setGender(?Genders $value = null): self {
         $this->gender = $value;
         return $this;
     }
@@ -301,12 +315,21 @@ class People {
         return $this;
     }
     /**
-     * @param PeoplePhotos $value
+     * @param PeoplePhotos|null $value
      *
      * @return self Fluent interface
      */
-    public function setPhoto(PeoplePhotos $value): self {
+    public function setPhoto(?PeoplePhotos $value = null): self {
         $this->photo = $value;
+        return $this;
+    }
+    /**
+     * @param Pronouns|null $value
+     *
+     * @return self Fluent interface
+     */
+    public function setPronouns(?Pronouns $value = null): self {
+        $this->pronouns = $value;
         return $this;
     }
     /**
@@ -350,11 +373,11 @@ class People {
      */
     private $familyName;
     /**
-     * @var Genders
+     * @var Genders|null
      *
      * @ORM\ManyToOne(targetEntity="Genders")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="gender_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="gender_id", referencedColumnName="id", nullable=true)
      * })
      */
     private $gender;
@@ -398,10 +421,19 @@ class People {
      */
     private $phoneNumbers;
     /**
-     * @var PeoplePhotos
+     * @var PeoplePhotos|null
      *
      * @ORM\OneToOne(targetEntity="PeoplePhotos", fetch="EXTRA_LAZY", orphanRemoval=true)
      * @ORM\JoinColumn(nullable=true)
      */
     private $photo;
+    /**
+     * @var Pronouns|null
+     *
+     * @ORM\ManyToOne(targetEntity="Pronouns")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="pronoun_id", referencedColumnName="id", nullable=true)
+     * })
+     */
+    private $pronouns;
 }
