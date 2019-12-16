@@ -60,12 +60,15 @@ use Uuid64Type\Uuid4;
  * @ORM\Table(
  *     name="types",
  *     uniqueConstraints={
- *         @ORM\UniqueConstraint(name="unq_t_class_type", columns={"class_name", "type"})
+ *         @ORM\UniqueConstraint(name="unq_t_class_kind", columns={"class_name", "kind"})
  *     }
  * )
  * @ORM\Entity
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="class_name", fieldName="className")
+ * @ORM\DiscriminatorMap(
+ *     {"address"="AddressTypes", "email"="EmailTypes", "phone"="PhoneTypes"}
+ * )
  */
 abstract class AbstractTypes {
     use CreateAt;
@@ -75,27 +78,27 @@ abstract class AbstractTypes {
     /**
      * AbstractTypes constructor.
      *
-     * @param string $type
+     * @param string $kind
      *
      * @throws \Exception
      */
-    public function __construct(string $type) {
+    public function __construct(string $kind) {
         $this->createdAt = new \DateTimeImmutable();
         $this->id = self::asBase64();
-        $this->type = $type;
+        $this->kind = $kind;
     }
     /**
-     * Get type.
+     * Get kind.
      *
      * @return string
      */
-    public function getType(): string {
-        return $this->type;
+    public function getKind(): string {
+        return $this->kind;
     }
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=50, nullable=false)
+     * @ORM\Column(name="kind", type="string", length=50, nullable=false)
      */
-    protected $type;
+    protected $kind;
 }
