@@ -78,7 +78,7 @@ abstract class AbstractTypes {
     /**
      * AbstractTypes constructor.
      *
-     * @param string $kind
+     * @param string $kind Things like: work cell, physical, work email, etc.
      *
      * @throws \Exception
      */
@@ -96,7 +96,7 @@ abstract class AbstractTypes {
         return $this->kind;
     }
     /**
-     * @var string
+     * @var string Things like: work cell, physical, work email, etc.
      *
      * @ORM\Column(name="kind", type="string", length=50, nullable=false)
      */

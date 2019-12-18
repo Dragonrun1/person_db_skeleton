@@ -78,8 +78,8 @@ class People {
     /**
      * Constructor
      *
-     * @param string $givenName
-     * @param string $familyName
+     * @param string $givenName  Given (often first) name.
+     * @param string $familyName Family (often last) name.
      *
      * @throws \Exception
      */
@@ -333,13 +333,15 @@ class People {
         return $this;
     }
     /**
+     * Other (e.g. middle) name.
+     *
      * @var string|null
      *
-     * @ORM\Column(name="additional_name",
+     * @ORM\Column(
+     *     name="additional_name",
      *     type="string",
      *     length=255,
-     *     nullable=true,
-     *     options={"comment"="other (e.g. middle) name"}
+     *     nullable=true
      * )
      */
     private $additionalName;
@@ -362,13 +364,15 @@ class People {
      */
     private $emails;
     /**
+     * Family (often last) name.
+     *
      * @var string
      *
-     * @ORM\Column(name="family_name",
+     * @ORM\Column(
+     *     name="family_name",
      *     type="string",
      *     length=100,
-     *     nullable=false,
-     *     options={"comment"="family (often last) name"}
+     *     nullable=false
      * )
      */
     private $familyName;
@@ -382,35 +386,40 @@ class People {
      */
     private $gender;
     /**
+     * Given (often first) name.
+     *
      * @var string
      *
-     * @ORM\Column(name="given_name",
+     * @ORM\Column(
+     *     name="given_name",
      *     type="string",
      *     length=100,
-     *     nullable=false,
-     *     options={"comment"="given (often first) name"}
+     *     nullable=false
      * )
      */
     private $givenName;
     /**
+     * Honorific prefix e.g. Mrs., Mr. or Dr.
+     *
      * @var string|null
      *
      * @ORM\Column(name="honorific_prefix",
      *     type="string",
      *     length=50,
-     *     nullable=true,
-     *     options={"comment"="e.g. Mrs., Mr. or Dr."}
+     *     nullable=true
      * )
      */
     private $honorificPrefix;
     /**
+     * Honorific suffix e.g. Ph.D, Esq.
+     *
      * @var string|null
      *
-     * @ORM\Column(name="honorific_suffix",
+     * @ORM\Column(
+     *     name="honorific_suffix",
      *     type="string",
      *     length=50,
-     *     nullable=true,
-     *     options={"comment"="e.g. Ph.D, Esq."}
+     *     nullable=true
      * )
      */
     private $honorificSuffix;

@@ -72,7 +72,7 @@ class Genders {
     /**
      * Genders constructor.
      *
-     * @param string $sex
+     * @param string $sex Biological sex - One of Female, Male, Other, None/Not applicable, Unknown, etc.
      *
      * @throws \Exception
      */
@@ -113,13 +113,15 @@ class Genders {
      */
     private $genderIdentity;
     /**
+     * Biological sex - One of Female, Male, Other, None/Not applicable, Unknown, etc.
+     *
      * @var string
      *
-     * @ORM\Column(name="sex",
+     * @ORM\Column(
+     *     name="sex",
      *     type="string",
      *     length=10,
-     *     nullable=false,
-     *     options={"comment"="biological sex - One of Female, Male, Other, None/Not applicable, Unknown"}
+     *     nullable=false
      * )
      */
     private $sex;

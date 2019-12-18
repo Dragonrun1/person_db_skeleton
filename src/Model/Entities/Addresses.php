@@ -68,9 +68,9 @@ class Addresses {
     /**
      * Addresses constructor.
      *
-     * @param string $locality
-     * @param string $countryName
-     * @param string $postalCode
+     * @param string $locality    City/town/village.
+     * @param string $countryName Country name.
+     * @param string $postalCode  Postal code, e.g. US ZIP.
      *
      * @throws \Exception
      */
@@ -248,30 +248,36 @@ class Addresses {
         return $this;
     }
     /**
+     * Country name.
+     *
      * @var string
      *
-     * @ORM\Column(name="country_name", type="string", length=50, nullable=false, options={"comment"="country name"})
+     * @ORM\Column(name="country_name", type="string", length=50, nullable=false)
      */
     private $countryName;
     /**
+     * Apartment/suite/room name/number if any.
+     *
      * @var string|null
      *
-     * @ORM\Column(name="extended_address",
+     * @ORM\Column(
+     *     name="extended_address",
      *     type="string",
      *     length=50,
-     *     nullable=true,
-     *     options={"comment"="apartment/suite/room name/number if any"}
+     *     nullable=true
      * )
      */
     private $extendedAddress;
     /**
+     * City/town/village.
+     *
      * @var string
      *
-     * @ORM\Column(name="locality",
+     * @ORM\Column(
+     *     name="locality",
      *     type="string",
      *     length=50,
-     *     nullable=false,
-     *     options={"comment"="city/town/village"}
+     *     nullable=false
      * )
      */
     private $locality;
@@ -282,46 +288,53 @@ class Addresses {
      */
     private $people;
     /**
+     * Post office box description if any
+     *
      * @var string|null
      *
-     * @ORM\Column(name="post_office_box",
+     * @ORM\Column(
+     *     name="post_office_box",
      *     type="string",
      *     length=50,
-     *     nullable=true,
-     *     options={"comment"="post office box description if any"}
+     *     nullable=true
      * )
      */
     private $postOfficeBox;
     /**
+     * Postal code, e.g. US ZIP.
+     *
      * @var string
      *
-     * @ORM\Column(name="postal_code",
+     * @ORM\Column(
+     *     name="postal_code",
      *     type="string",
      *     length=30,
-     *     nullable=false,
-     *     options={"comment"="postal code, e.g. US ZIP"}
+     *     nullable=false
      * )
      */
     private $postalCode;
     /**
+     * State/county/province if any.
+     *
      * @var string|null
      *
-     * @ORM\Column(name="region",
+     * @ORM\Column(
+     *     name="region",
      *     type="string",
      *     length=50,
-     *     nullable=true,
-     *     options={"comment"="state/county/province"}
+     *     nullable=true
      * )
      */
     private $region;
     /**
+     * Street number + name.
+     *
      * @var string|null
      *
      * @ORM\Column(name="street_address",
      *     type="string",
      *     length=255,
-     *     nullable=true,
-     *     options={"comment"="street number + name"}
+     *     nullable=true
      * )
      */
     private $streetAddress;

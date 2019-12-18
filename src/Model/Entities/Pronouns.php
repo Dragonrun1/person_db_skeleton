@@ -73,9 +73,9 @@ class Pronouns {
     /**
      * Pronouns constructor.
      *
-     * @param string $subject
-     * @param string $object
-     * @param string $possessive
+     * @param string $subject    Subject pronoun - One of he, she, they, etc.
+     * @param string $object     Objective pronoun - One of her, him, them, etc.
+     * @param string $possessive Possessive pronoun - One of hers, his, theirs, etc.
      *
      * @throws \Exception
      */
@@ -105,35 +105,41 @@ class Pronouns {
         return $this->subject;
     }
     /**
+     * Objective pronoun - One of her, him, them, etc.
+     *
      * @var string
      *
-     * @ORM\Column(name="object",
+     * @ORM\Column(
+     *     name="object",
      *     type="string",
      *     length=10,
-     *     nullable=false,
-     *     options={"comment"="objective pronoun - One of her, him, them, etc"}
+     *     nullable=false
      * )
      */
     private $object;
     /**
+     * Possessive pronoun - One of hers, his, theirs, etc.
+     *
      * @var string
      *
-     * @ORM\Column(name="possessive",
+     * @ORM\Column(
+     *     name="possessive",
      *     type="string",
      *     length=10,
-     *     nullable=false,
-     *     options={"comment"="possessive pronoun - One of hers, his, theirs, etc"}
+     *     nullable=false
      * )
      */
     private $possessive;
     /**
+     * Subject pronoun - One of he, she, they, etc.
+     *
      * @var string
      *
-     * @ORM\Column(name="subject",
+     * @ORM\Column(
+     *     name="subject",
      *     type="string",
      *     length=10,
-     *     nullable=false,
-     *     options={"comment"="subject pronoun - One of he, she, they, etc"}
+     *     nullable=false
      * )
      */
     private $subject;
