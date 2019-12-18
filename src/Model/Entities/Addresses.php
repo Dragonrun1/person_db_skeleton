@@ -228,7 +228,7 @@ class Addresses {
      *
      * @return self Fluent interface
      */
-    public function setRegion(?string $value): self {
+    public function setRegion(?string $value = null): self {
         $this->region = $value;
         return $this;
     }

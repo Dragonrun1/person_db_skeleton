@@ -127,7 +127,7 @@ class PeopleAddresses {
      *
      * @return self Fluent interface
      */
-    public function setComment(?string $value): self {
+    public function setComment(?string $value = null): self {
         $this->comment = $value;
         return $this;
     }

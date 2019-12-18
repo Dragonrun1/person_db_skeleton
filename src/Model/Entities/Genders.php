@@ -102,7 +102,7 @@ class Genders {
      *
      * @return self Fluent interface
      */
-    public function setGenderIdentity(?string $value): self {
+    public function setGenderIdentity(?string $value = null): self {
         $this->genderIdentity = $value;
         return $this;
     }

@@ -256,7 +256,7 @@ class People {
      *
      * @return self Fluent interface
      */
-    public function setAdditionalName(?string $value): self {
+    public function setAdditionalName(?string $value = null): self {
         $this->additionalName = $value;
         return $this;
     }
@@ -265,7 +265,7 @@ class People {
      *
      * @return self Fluent interface
      */
-    public function setBirthday(?\DateTimeImmutable $value): self {
+    public function setBirthday(?\DateTimeImmutable $value = null): self {
         $this->birthday = $value;
         return $this;
     }
@@ -301,7 +301,7 @@ class People {
      *
      * @return self Fluent interface
      */
-    public function setHonorificPrefix(?string $value): self {
+    public function setHonorificPrefix(?string $value = null): self {
         $this->honorificPrefix = $value;
         return $this;
     }
@@ -310,7 +310,7 @@ class People {
      *
      * @return self Fluent interface
      */
-    public function setHonorificSuffix(?string $value): self {
+    public function setHonorificSuffix(?string $value = null): self {
         $this->honorificSuffix = $value;
         return $this;
     }
