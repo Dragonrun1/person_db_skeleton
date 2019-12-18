@@ -6,12 +6,12 @@ namespace Model\Migrations;
 
 use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\Migrations\AbstractMigration;
+use PersonDBSkeleton\Model\Migrations\AbstractVersion;
 
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20191216000001 extends AbstractMigration {
+final class Version20191216000001 extends AbstractVersion {
     /**
      * @param Schema $schema
      *
