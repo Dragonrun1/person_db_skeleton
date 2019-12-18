@@ -50,6 +50,8 @@ declare(strict_types=1);
 
 namespace PersonDBSkeleton\Model\Migrations;
 
+use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
 /**
@@ -65,6 +67,50 @@ abstract class AbstractVersion extends AbstractMigration {
             if ('' !== \trim($statement)) {
                 $this->addSql($statement);
             }
+        }
+    }
+    /**
+     * @param Schema $schema
+     *
+     * @throws DBALException
+     */
+    public function preDown(Schema $schema): void {
+        /** @noinspection DegradedSwitchInspection */
+        switch ($this->connection->getDatabasePlatform()
+                                 ->getName()) {
+            case 'mysql':
+                $sql = /** @lang MySQL */
+                    <<<'SQL'
+                SET SESSION SQL_MODE = 'ANSI,TRADITIONAL';
+                SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+                SET SESSION TIME_ZONE = '+00:00';
+                SQL;
+                $this->executeSQL($sql);
+                break;
+            default:
+                // Nothing
+        }
+    }
+    /**
+     * @param Schema $schema
+     *
+     * @throws DBALException
+     */
+    public function preUp(Schema $schema): void {
+        /** @noinspection DegradedSwitchInspection */
+        switch ($this->connection->getDatabasePlatform()
+                                 ->getName()) {
+            case 'mysql':
+                $sql = /** @lang MySQL */
+                    <<<'SQL'
+                SET SESSION SQL_MODE = 'ANSI,TRADITIONAL';
+                SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+                SET SESSION TIME_ZONE = '+00:00';
+                SQL;
+                $this->executeSQL($sql);
+                break;
+            default:
+                // Nothing
         }
     }
 }

@@ -21,6 +21,7 @@ final class Version20191216000002 extends AbstractVersion {
         switch ($this->connection->getDatabasePlatform()
                                  ->getName()) {
             case 'mysql':
+            case 'postgresql':
             case 'sqlite':
                 $this->downCommon();
                 break;
@@ -43,6 +44,7 @@ final class Version20191216000002 extends AbstractVersion {
         switch ($this->connection->getDatabasePlatform()
                                  ->getName()) {
             case 'mysql':
+            case 'postgresql':
             case 'sqlite':
                 $this->upCommon();
                 break;
@@ -52,8 +54,10 @@ final class Version20191216000002 extends AbstractVersion {
     }
     /**
      *
+     * @noinspection SqlResolve
      */
     private function downCommon(): void {
+        // Genders
         $data = [
             [
                 'id' => 'XNV_rXUFQvqQfvqJLSHP5w',
@@ -62,13 +66,14 @@ final class Version20191216000002 extends AbstractVersion {
                 'id' => 'sFJPpw75SSmFiF1wnfbZVg',
             ],
         ];
-        $sql = /** @lang MySQL */
+        $sql = /** @lang SQL */
             <<<'SQL'
-            DELETE FROM `genders` WHERE `id`=:id
+            DELETE FROM "genders" WHERE "id"=:id
             SQL;
         foreach ($data as $row) {
             $this->addSql($sql, $row);
         }
+        // Pronouns
         $data = [
             [
                 'id' => 'twPhMNLuTkG9HcZm59kyow',
@@ -80,13 +85,14 @@ final class Version20191216000002 extends AbstractVersion {
                 'id' => 'pjKF25EwT_G2bnof7b5yJQ',
             ],
         ];
-        $sql = /** @lang MySQL */
+        $sql = /** @lang SQL */
             <<<'SQL'
-            DELETE FROM  `pronouns` WHERE `id`=:id
+            DELETE FROM  "pronouns" WHERE "id"=:id
             SQL;
         foreach ($data as $row) {
             $this->addSql($sql, $row);
         }
+        // Types
         $data = [
             // AddressTypes
             [
@@ -131,9 +137,9 @@ final class Version20191216000002 extends AbstractVersion {
                 'id' => 'F8inxYKIRX-2Ot6AvDc6aQ',
             ],
         ];
-        $sql = /** @lang MySQL */
+        $sql = /** @lang SQL */
             <<<'SQL'
-            DELETE FROM  `types` WHERE `id`=:id
+            DELETE FROM  "types" WHERE "id"=:id
             SQL;
         foreach ($data as $row) {
             $this->addSql($sql, $row);
@@ -141,8 +147,10 @@ final class Version20191216000002 extends AbstractVersion {
     }
     /**
      *
+     * @noinspection SqlResolve
      */
     private function upCommon(): void {
+        // Genders
         $data = [
             [
                 'id' => 'XNV_rXUFQvqQfvqJLSHP5w',
@@ -155,15 +163,16 @@ final class Version20191216000002 extends AbstractVersion {
                 'sex' => 'male',
             ],
         ];
-        $sql = /** @lang MySQL */
+        $sql = /** @lang SQL */
             <<<'SQL'
-            INSERT INTO `genders`
-                (`id`, `created_at`, `sex`)
+            INSERT INTO "genders"
+                ("id", "created_at", "sex")
             VALUES (:id, :created_at, :sex)
             SQL;
         foreach ($data as $row) {
             $this->addSql($sql, $row);
         }
+        // Pronouns
         $data = [
             [
                 'id' => 'twPhMNLuTkG9HcZm59kyow',
@@ -187,15 +196,16 @@ final class Version20191216000002 extends AbstractVersion {
                 'possessive' => 'theirs',
             ],
         ];
-        $sql = /** @lang MySQL */
+        $sql = /** @lang SQL */
             <<<'SQL'
-            INSERT INTO `pronouns`
-                (`id`, `created_at`, `subject`, `object`, `possessive`)
+            INSERT INTO "pronouns"
+                ("id", "created_at", "subject", "object", "possessive")
             VALUES (:id, :created_at, :subject, :object, :possessive)
             SQL;
         foreach ($data as $row) {
             $this->addSql($sql, $row);
         }
+        // Types
         $data = [
             // AddressTypes
             [
@@ -279,10 +289,10 @@ final class Version20191216000002 extends AbstractVersion {
                 'class_name' => 'phone',
             ],
         ];
-        $sql = /** @lang MySQL */
+        $sql = /** @lang SQL */
             <<<'SQL'
-            INSERT INTO `types`
-                (`id`, `created_at`, `kind`, `class_name`)
+            INSERT INTO "types"
+                ("id", "created_at", "kind", "class_name")
                 VALUES (:id, :created_at, :kind, :class_name)
             SQL;
         foreach ($data as $row) {
