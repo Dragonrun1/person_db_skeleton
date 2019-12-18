@@ -12,6 +12,15 @@ switch ($platform) {
             'password' => 'secret',
             'user' => 'PDBSUser',
         ];
+    case 'pgsql':
+    case 'postgres':
+        return [
+            'dbname' => 'person_db_skeleton',
+            'driver' => 'pdo_pgsql',
+            'host' => 'localhost',
+            'password' => 'secret',
+            'user' => 'postgres',
+        ];
     case 'sqlite':
         return [
             'driver' => 'pdo_sqlite',
