@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
+ * Contains dotEnv-config.
  *
  * PHP version 7.3
  *
@@ -46,41 +47,25 @@ declare(strict_types=1);
  * @copyright 2019 Michael Cummings
  * @license   BSD-3-Clause
  */
-require_once \dirname(__DIR__) . '/bin/bootstrap.php';
-use Doctrine\DBAL\DBALException;
-use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
-use Doctrine\DBAL\Types\Type;
-use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
-use PersonDBSkeleton\Utils\EManager;
-use Symfony\Component\Console\Helper\HelperSet;
-use Uuid64Type\Type\Uuid64Type;
+use josegonzalez\Dotenv\Filter\UnderscoreArrayFilter;
+use josegonzalez\Dotenv\Loader;
 
 $dir = \str_replace('\\', '/', \dirname(__DIR__));
-$dotEnv = require __DIR__ . '/dotEnv-config.php';
-$env = $dotEnv->toArray();
-$platform = $env['platform'];
-$isDevMode = $env['devMode'];
-$dbParams = $env[$platform];
-$em = new class {
-    use EManager;
-};
-$entityManager = $em->getEntityManager($env, $isDevMode, $dir, $dbParams);
-$conn = $entityManager->getConnection();
-$type = 'uuid64';
-try {
-    Type::addType($type, Uuid64Type::class);
-    $conn->getDatabasePlatform()
-         ->registerDoctrineTypeMapping($type, 'string');
-    $conn->getDatabasePlatform()
-         ->markDoctrineTypeCommented($type);
-} catch (DBALException $e) {
-    print $e->getMessage() . PHP_EOL;
-    print $e->getTraceAsString();
-    exit(1);
+$paths = [
+    $dir . '/.env.default',
+    $dir . '/.env',
+    $dir . '/config/.env.default',
+    $dir . '/config/.env',
+];
+$vendorPos = \strpos($dir, 'vendor/');
+if (false !== $vendorPos) {
+    $dir = \substr($dir, 0, $vendorPos);
+    $paths[] = $dir . '/.env.default';
+    $paths[] = $dir . '/.env';
+    $paths[] = $dir . '/config/.env.default';
+    $paths[] = $dir . '/config/.env';
 }
-return new HelperSet(
-    [
-        'em' => new EntityManagerHelper($entityManager),
-        'db' => new ConnectionHelper($conn),
-    ]
-);
+return (new Loader($paths))->setFilters([UnderscoreArrayFilter::class])
+                           ->parse()
+                           ->filter()
+                           ->expect(['platform', 'devMode']);

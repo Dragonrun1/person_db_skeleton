@@ -1,0 +1,4 @@
+@ECHO OFF
+setlocal DISABLEDELAYEDEXPANSION
+SET BIN_TARGET=%~dp0pds-migrations
+php "%BIN_TARGET%" %*

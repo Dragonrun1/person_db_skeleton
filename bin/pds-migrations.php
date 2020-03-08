@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
+ * Contains pds-migrations cli tool.
  *
  * PHP version 7.3
  *
@@ -46,41 +47,89 @@ declare(strict_types=1);
  * @copyright 2019 Michael Cummings
  * @license   BSD-3-Clause
  */
-require_once \dirname(__DIR__) . '/bin/bootstrap.php';
-use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
 use Doctrine\DBAL\Types\Type;
+use Doctrine\Migrations\Configuration\Configuration as MConfiguration;
+use Doctrine\Migrations\Tools\Console\Command;
+use Doctrine\Migrations\Tools\Console\Helper\ConfigurationHelper;
 use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use PersonDBSkeleton\Utils\EManager;
+use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\HelperSet;
+use Symfony\Component\Console\Helper\QuestionHelper;
 use Uuid64Type\Type\Uuid64Type;
 
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 $dir = \str_replace('\\', '/', \dirname(__DIR__));
-$dotEnv = require __DIR__ . '/dotEnv-config.php';
+$dotEnv = require dirname(__DIR__) . '/config/dotEnv-config.php';
 $env = $dotEnv->toArray();
 $platform = $env['platform'];
 $isDevMode = $env['devMode'];
 $dbParams = $env[$platform];
+try {
+    $conn = DriverManager::getConnection($dbParams);
+    $config = new MConfiguration($conn);
+} catch (\Exception $e) {
+    print $e->getTraceAsString();
+    print $e->getMessage();
+    exit(1);
+}
+$migrations = $env['migrations'];
+foreach ($migrations as $key => $value) {
+    $method = 'set' . $key;
+    print $method . PHP_EOL;
+    if ('MigrationsDirectory' === $key) {
+        $value = $dir . $value;
+        print $value . PHP_EOL;
+    }
+    if (\method_exists($config, $method)) {
+        $config->$method($value);
+    }
+}
 $em = new class {
     use EManager;
 };
 $entityManager = $em->getEntityManager($env, $isDevMode, $dir, $dbParams);
-$conn = $entityManager->getConnection();
-$type = 'uuid64';
+$type = Uuid64Type::UUID64;
 try {
     Type::addType($type, Uuid64Type::class);
     $conn->getDatabasePlatform()
          ->registerDoctrineTypeMapping($type, 'string');
     $conn->getDatabasePlatform()
          ->markDoctrineTypeCommented($type);
-} catch (DBALException $e) {
+} catch (\Exception $e) {
     print $e->getMessage() . PHP_EOL;
     print $e->getTraceAsString();
     exit(1);
 }
-return new HelperSet(
+$helperSet = new HelperSet();
+$helperSet->set(new QuestionHelper(), 'question');
+$helperSet->set(new ConnectionHelper($conn), 'db');
+$helperSet->set(new ConfigurationHelper($conn, $config));
+// TODO: Add Doctrine entity manager stuff above.
+$helperSet->set(new EntityManagerHelper($entityManager), 'em');
+$cli = new Application('PDS Migrations');
+$cli->setCatchExceptions(true);
+$cli->setHelperSet($helperSet);
+$cli->addCommands(
     [
-        'em' => new EntityManagerHelper($entityManager),
-        'db' => new ConnectionHelper($conn),
+        new Command\DumpSchemaCommand(),
+        new Command\ExecuteCommand(),
+        new Command\DiffCommand(),
+        new Command\GenerateCommand(),
+        new Command\LatestCommand(),
+        new Command\MigrateCommand(),
+        new Command\RollupCommand(),
+        new Command\StatusCommand(),
+        new Command\UpToDateCommand(),
+        new Command\VersionCommand(),
     ]
 );
+try {
+    $cli->run();
+} catch (Exception $e) {
+    print $e->getTraceAsString();
+    print $e->getMessage();
+    exit(2);
+}
