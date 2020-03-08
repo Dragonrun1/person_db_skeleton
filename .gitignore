@@ -1,5 +1,7 @@
 .idea/
-/vendor/
-test*.*
-junk*.*
+vendor/
+.env
 composer.lock
+junk*.*
+person_db_skeleton.sq3
+test*.*
