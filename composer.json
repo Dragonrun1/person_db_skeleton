@@ -1,8 +1,8 @@
 {
     "name": "dragonrun1/person_db_skeleton",
     "description": "Skeleton for common person database tables in MySQL and Doctrine.",
-    "type": "library",
     "license": "BSD-3-Clause",
+    "version": "0.0.2",
     "authors": [
         {
             "name": "Michael Cummings", "email": "dragonrun1@gmail.com"
@@ -32,7 +32,9 @@
         "ext-sodium": "*",
         "doctrine/migrations": "^2.2",
         "doctrine/orm": "^2.7",
-        "dragonrun1/uuid64type": "@dev"
+        "dragonrun1/uuid64type": "@dev",
+        "jdorn/sql-formatter": "^1.2",
+        "josegonzalez/dotenv": "^3.2"
     },
     "require-dev": {
         "friends-of-phpspec/phpspec-code-coverage": "^4.3",
