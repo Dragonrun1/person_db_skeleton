@@ -70,17 +70,15 @@ class Addresses {
      *
      * @param string $locality    City/town/village.
      * @param string $countryName Country name.
-     * @param string $postalCode  Postal code, e.g. US ZIP.
      *
      * @throws \Exception
      */
-    public function __construct(string $locality, string $countryName, string $postalCode) {
+    public function __construct(string $locality, string $countryName) {
         $this->createdAt = new \DateTimeImmutable();
         $this->id = self::asBase64();
         $this->people = new ArrayCollection();
         $this->locality = $locality;
         $this->countryName = $countryName;
-        $this->postalCode = $postalCode;
     }
     /**
      * Add person.
@@ -186,7 +184,7 @@ class Addresses {
      */
     public function setExtendedAddress(?string $value = null): self {
         $this->extendedAddress = $value;
-        $this->setPostOfficeBox();
+        $this->postOfficeBox = null;
         return $this;
     }
     /**
@@ -210,8 +208,8 @@ class Addresses {
      */
     public function setPostOfficeBox(?string $value = null): self {
         $this->postOfficeBox = $value;
-        $this->setStreetAddress();
-        $this->setExtendedAddress();
+        $this->streetAddress = null;
+        $this->extendedAddress = null;
         return $this;
     }
     /**
@@ -244,7 +242,7 @@ class Addresses {
      */
     public function setStreetAddress(?string $value = null): self {
         $this->streetAddress = $value;
-        $this->setPostOfficeBox();
+        $this->postOfficeBox = null;
         return $this;
     }
     /**
@@ -288,7 +286,7 @@ class Addresses {
      */
     private $people;
     /**
-     * Post office box description if any
+     * Post office box description if any.
      *
      * @var string|null
      *
@@ -303,13 +301,13 @@ class Addresses {
     /**
      * Postal code, e.g. US ZIP.
      *
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(
      *     name="postal_code",
      *     type="string",
      *     length=30,
-     *     nullable=false
+     *     nullable=true
      * )
      */
     private $postalCode;
