@@ -59,23 +59,13 @@ use Doctrine\Migrations\AbstractMigration;
  */
 abstract class AbstractVersion extends AbstractMigration {
     /**
-     * @param string $sql
-     */
-    protected function executeSQL(string $sql): void {
-        $statements = \explode(';', $sql);
-        foreach ($statements as $statement) {
-            if ('' !== \trim($statement)) {
-                $this->addSql($statement);
-            }
-        }
-    }
-    /**
      * @param Schema $schema
      *
      * @throws DBALException
      */
     public function preDown(Schema $schema): void {
         /** @noinspection DegradedSwitchInspection */
+        /** @noinspection NullPointerExceptionInspection */
         switch ($this->connection->getDatabasePlatform()
                                  ->getName()) {
             case 'mysql':
@@ -98,6 +88,7 @@ abstract class AbstractVersion extends AbstractMigration {
      */
     public function preUp(Schema $schema): void {
         /** @noinspection DegradedSwitchInspection */
+        /** @noinspection NullPointerExceptionInspection */
         switch ($this->connection->getDatabasePlatform()
                                  ->getName()) {
             case 'mysql':
@@ -111,6 +102,17 @@ abstract class AbstractVersion extends AbstractMigration {
                 break;
             default:
                 // Nothing
+        }
+    }
+    /**
+     * @param string $sql
+     */
+    protected function executeSQL(string $sql): void {
+        $statements = \explode(';', $sql);
+        foreach ($statements as $statement) {
+            if ('' !== \trim($statement)) {
+                $this->addSql($statement);
+            }
         }
     }
 }

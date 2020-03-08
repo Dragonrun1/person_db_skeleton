@@ -2,11 +2,10 @@
 /** @noinspection PhpUnused */
 declare(strict_types=1);
 
-namespace Model\Migrations;
+namespace PersonDBSkeleton\Model\Migrations;
 
 use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Schema\Schema;
-use PersonDBSkeleton\Model\Migrations\AbstractVersion;
 
 /**
  * Auto-generated Migration: Please modify to your needs!
@@ -18,6 +17,7 @@ final class Version20191216000002 extends AbstractVersion {
      * @throws DBALException
      */
     public function down(Schema $schema): void {
+        /** @noinspection NullPointerExceptionInspection */
         switch ($this->connection->getDatabasePlatform()
                                  ->getName()) {
             case 'mysql':
@@ -41,6 +41,7 @@ final class Version20191216000002 extends AbstractVersion {
      * @throws DBALException
      */
     public function up(Schema $schema): void {
+        /** @noinspection NullPointerExceptionInspection */
         switch ($this->connection->getDatabasePlatform()
                                  ->getName()) {
             case 'mysql':
@@ -52,10 +53,6 @@ final class Version20191216000002 extends AbstractVersion {
                 $this->abortIf(true, 'Unknown or un-implemented platform for this migration');
         }
     }
-    /**
-     *
-     * @noinspection SqlResolve
-     */
     private function downCommon(): void {
         // Genders
         $data = [
@@ -145,10 +142,6 @@ final class Version20191216000002 extends AbstractVersion {
             $this->addSql($sql, $row);
         }
     }
-    /**
-     *
-     * @noinspection SqlResolve
-     */
     private function upCommon(): void {
         // Genders
         $data = [
