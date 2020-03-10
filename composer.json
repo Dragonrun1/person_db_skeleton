@@ -1,6 +1,6 @@
 {
     "name": "dragonrun1/person_db_skeleton",
-    "description": "Skeleton for common person database tables in MySQL and Doctrine.",
+    "description": "Skeleton for common person database tables in MySQL, PostgreSQL, SQLite and Doctrine.",
     "license": "BSD-3-Clause",
     "version": "0.0.3",
     "authors": [
@@ -41,5 +41,12 @@
         "phpspec/nyan-formatters": "dev-master",
         "phpspec/phpspec": "^5.1.0",
         "roave/security-advisories": "dev-master"
+    },
+    "repositories": {
+        "uuid64type": {
+            "type": "path", "url": "C:/repos/github/Dragonrun1/Uuid64Type", "options": {
+                "symlink": true
+            }
+        }
     }
 }
