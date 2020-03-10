@@ -5,10 +5,21 @@
 
 Skeleton for common person database tables in MySQL, PostgreSQL, SQLite and Doctrine.
 
+## Contributing
+
+Please note that this project has a
+[Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By participating in this project you agree to abide by its terms.
+
+Pull requests are welcome. For major changes, please open an issue first to
+discuss what you would like to change.
+
+Please make sure to update or add tests as appropriate.
+
 ## License
 [BSD-3-Clause](https://spdx.org/licenses/BSD-3-Clause.html)
 
-Copyright (c) 2020 Michael Cummings. All rights reserved.
+Copyright (c) 2019 Michael Cummings. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
