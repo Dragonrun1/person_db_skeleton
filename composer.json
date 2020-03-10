@@ -2,7 +2,7 @@
     "name": "dragonrun1/person_db_skeleton",
     "description": "Skeleton for common person database tables in MySQL, PostgreSQL, SQLite and Doctrine.",
     "license": "BSD-3-Clause",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "authors": [
         {
             "name": "Michael Cummings", "email": "dragonrun1@gmail.com"

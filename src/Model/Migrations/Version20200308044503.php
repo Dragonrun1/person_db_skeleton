@@ -77,7 +77,8 @@ final class Version20200308044503 extends AbstractVersion {
                 , "street_address" VARCHAR(255) DEFAULT NULL COLLATE "BINARY"
                 , "created_at" DATETIME NOT NULL --(DC2Type:datetime_immutable)
                 , "postal_code" VARCHAR(30) NOT NULL COLLATE "BINARY"
-                , PRIMARY KEY("id"));
+                , PRIMARY KEY("id")
+             ) WITHOUT ROWID;
             INSERT INTO "addresses"
                 ("id", "country_name", "extended_address", "locality", "post_office_box", "postal_code", "region", "street_address", "created_at")
                 SELECT "id", "country_name", "extended_address", "locality", "post_office_box", "postal_code", "region", "street_address", "created_at"
@@ -118,7 +119,8 @@ final class Version20200308044503 extends AbstractVersion {
                 , "street_address" VARCHAR(255) DEFAULT NULL COLLATE "BINARY"
                 , "created_at" DATETIME NOT NULL --(DC2Type:datetime_immutable)
                 , "postal_code" VARCHAR(30) DEFAULT NULL
-                , PRIMARY KEY("id"));
+                , PRIMARY KEY("id")
+             ) WITHOUT ROWID;
             INSERT INTO "addresses"
                 ("id", "country_name", "extended_address", "locality", "post_office_box", "postal_code", "region", "street_address", "created_at")
                 SELECT "id", "country_name", "extended_address", "locality", "post_office_box", "postal_code", "region", "street_address", "created_at"

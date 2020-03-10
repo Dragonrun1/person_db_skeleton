@@ -481,7 +481,7 @@ final class Version20191216000001 extends AbstractVersion {
             ,
             "class_name" VARCHAR(255) NOT NULL,
             PRIMARY KEY ("id")
-        );
+        ) WITHOUT ROWID;
         CREATE UNIQUE INDEX "unq_t_class_kind" ON "types" ("class_name", "kind");
         CREATE TABLE "addresses"
         (
@@ -497,7 +497,7 @@ final class Version20191216000001 extends AbstractVersion {
             "created_at"       DATETIME    NOT NULL --(DC2Type:datetime_immutable)
             ,
             PRIMARY KEY ("id")
-        );
+        ) WITHOUT ROWID;
         CREATE TABLE "emails"
         (
             "id"         CHAR(22)     NOT NULL --(DC2Type:uuid64)
@@ -506,7 +506,7 @@ final class Version20191216000001 extends AbstractVersion {
             "created_at" DATETIME     NOT NULL --(DC2Type:datetime_immutable)
             ,
             PRIMARY KEY ("id")
-        );
+        ) WITHOUT ROWID;
         CREATE TABLE "genders"
         (
             "id"              CHAR(22)    NOT NULL --(DC2Type:uuid64)
@@ -516,7 +516,7 @@ final class Version20191216000001 extends AbstractVersion {
             "created_at"      DATETIME    NOT NULL --(DC2Type:datetime_immutable)
             ,
             PRIMARY KEY ("id")
-        );
+        ) WITHOUT ROWID;
         CREATE UNIQUE INDEX "unq_g_gender" ON "genders" ("sex", "gender_identity");
         CREATE TABLE "people"
         (
@@ -538,7 +538,7 @@ final class Version20191216000001 extends AbstractVersion {
             "pronoun_id"       CHAR(22)     DEFAULT NULL --(DC2Type:uuid64)
             ,
             PRIMARY KEY ("id")
-        );
+        ) WITHOUT ROWID;
         CREATE INDEX "idx_p_family_name" ON "people" ("family_name");
         CREATE INDEX "fk_p_gender" ON "people" ("gender_id");
         CREATE INDEX "fk_p_pronoun" ON "people" ("pronoun_id");
@@ -555,7 +555,7 @@ final class Version20191216000001 extends AbstractVersion {
             "created_at" DATETIME NOT NULL --(DC2Type:datetime_immutable)
             ,
             PRIMARY KEY ("address_id", "person_id", "type_id")
-        );
+        ) WITHOUT ROWID;
         CREATE INDEX "idx_pa_reverse" ON "people_addresses" ("address_id", "person_id");
         CREATE INDEX "idx_pa_type" ON "people_addresses" ("type_id");
         CREATE INDEX "idx_pa_address" ON "people_addresses" ("address_id");
@@ -573,7 +573,7 @@ final class Version20191216000001 extends AbstractVersion {
             "created_at" DATETIME NOT NULL --(DC2Type:datetime_immutable)
             ,
             PRIMARY KEY ("email_id", "person_id", "type_id")
-        );
+        ) WITHOUT ROWID;
         CREATE INDEX "idx_pe_reverse" ON "people_emails" ("email_id", "person_id");
         CREATE INDEX "idx_pe_type" ON "people_emails" ("type_id");
         CREATE INDEX "idx_pe_email" ON "people_emails" ("email_id");
@@ -591,7 +591,7 @@ final class Version20191216000001 extends AbstractVersion {
             "created_at" DATETIME NOT NULL --(DC2Type:datetime_immutable)
             ,
             PRIMARY KEY ("person_id", "phone_id", "type_id")
-        );
+        ) WITHOUT ROWID;
         CREATE INDEX "idx_ppn_reverse" ON "people_phone_numbers" ("phone_id", "person_id");
         CREATE INDEX "idx_ppn_type" ON "people_phone_numbers" ("type_id");
         CREATE INDEX "idx_ppn_person" ON "people_phone_numbers" ("person_id");
@@ -606,7 +606,7 @@ final class Version20191216000001 extends AbstractVersion {
             "created_at" DATETIME    NOT NULL --(DC2Type:datetime_immutable)
             ,
             PRIMARY KEY ("id")
-        );
+        ) WITHOUT ROWID;
         CREATE TABLE "phone_numbers"
         (
             "id"         CHAR(22)    NOT NULL --(DC2Type:uuid64)
@@ -615,7 +615,7 @@ final class Version20191216000001 extends AbstractVersion {
             "created_at" DATETIME    NOT NULL --(DC2Type:datetime_immutable)
             ,
             PRIMARY KEY ("id")
-        );
+        ) WITHOUT ROWID;
         CREATE TABLE "pronouns"
         (
             "id"         CHAR(22)    NOT NULL --(DC2Type:uuid64)
@@ -626,7 +626,7 @@ final class Version20191216000001 extends AbstractVersion {
             "created_at" DATETIME    NOT NULL --(DC2Type:datetime_immutable)
             ,
             PRIMARY KEY ("id")
-        );
+        ) WITHOUT ROWID;
         CREATE UNIQUE INDEX "unq_pr_pronouns" ON "pronouns" ("subject", "object", "possessive");
         SQL;
         $this->executeSQL($sql);
